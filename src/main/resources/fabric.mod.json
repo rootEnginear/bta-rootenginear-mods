@@ -1,33 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "playground",
   "version": "${version}",
-
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Playground",
+  "description": "This is the beginning of awesome mods!",
   "authors": [
-    "Turnip Labs"
+    "rootEnginear"
   ],
+	"icon": "icon.png",
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
+    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
+    "issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
   },
-
   "license": "CC0-1.0",
-
   "environment": "*",
   "entrypoints": {
     "main": [
-        "turniplabs.examplemod.ExampleMod"
+			"rootenginear.playground.Playground"
     ]
   },
   "mixins": [
-      "examplemod.mixins.json"
+      "playground.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.13.3"
-  },
-  "suggests": {
   }
 }
