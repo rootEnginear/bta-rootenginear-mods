@@ -4,7 +4,13 @@
 # against bad commits.
 
 name: build
-on: [pull_request, push]
+on:
+  pull_request:
+    branches-ignore:
+      - '1.7.7.x'
+  push:
+    branches-ignore:
+      - '1.7.7.x'
 
 jobs:
   build:
