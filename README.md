@@ -1,14 +1,8 @@
 <img align="right" height="128" width="128" alt="" loading="lazy" decoding="async" src="./src/main/resources/icon.png"/>
 
-# Playground
+# Craftable Chainmail Armor
 
-This is the beginning of awesome mods!
+Craft chainmail armors from chainlinks.
 
 > **Important**
 > Required [Babric](https://github.com/Turnip-Labs/babric-instance-repo/releases) to run the mod.
-
-## Features
-
-- Feature #1
-- Feature #2
-- Feature #3

@@ -1,28 +1,25 @@
 {
   "schemaVersion": 1,
-  "id": "playground",
+  "id": "craftablechainmailarmor",
   "version": "${version}",
-  "name": "Playground",
-  "description": "This is the beginning of awesome mods!",
+  "name": "Craftable Chainmail Armor",
+  "description": "Craft chainmail armors from chainlinks.",
   "authors": [
     "rootEnginear"
   ],
 	"icon": "icon.png",
   "contact": {
-    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
+    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/craftable-chainmail-armor",
+    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/craftable-chainmail-armor",
     "issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
   },
   "license": "CC0-1.0",
   "environment": "*",
   "entrypoints": {
     "main": [
-			"rootenginear.playground.Playground"
+			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
     ]
   },
-  "mixins": [
-      "playground.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.13.3"
   }
