@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
-  "id": "playground",
+  "id": "bitbybit",
   "version": "${version}",
-  "name": "Playground",
-  "description": "This is the beginning of awesome mods!",
+  "name": "Bit by Bit",
+  "description": "Eat foods Bit by Bit.",
   "authors": [
     "rootEnginear"
   ],
 	"icon": "icon.png",
   "contact": {
-    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
+    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/bit-by-bit",
+    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/bit-by-bit",
     "issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
   },
   "license": "CC0-1.0",
   "environment": "*",
   "entrypoints": {
     "main": [
-			"rootenginear.playground.Playground"
+			"rootenginear.bitbybit.BitByBit"
     ]
   },
   "mixins": [
-      "playground.mixins.json"
+		"bitbybit.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3"

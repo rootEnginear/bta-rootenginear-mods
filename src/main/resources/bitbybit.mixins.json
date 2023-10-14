@@ -1,0 +1,18 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "rootenginear.bitbybit.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+      "EntityWolfMixin",
+      "ItemBucketIceCreamOverride",
+      "ItemFoodOverride",
+      "ItemFoodStackableOverride",
+      "ItemSoupOverride",
+      "RenderGlobalMixin",
+      "adapter.ItemAccessor"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+  }
+}
