@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "rootenginear.proximitychat.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "server": [
+    "CommandsMixin",
+    "NetServerHandlerMixin",
+    "ServerConfigurationManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

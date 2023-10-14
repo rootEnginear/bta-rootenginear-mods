@@ -16,12 +16,12 @@
   "license": "CC0-1.0",
   "environment": "*",
   "entrypoints": {
-    "main": [
-			"rootenginear.playground.Playground"
+    "server": [
+			"rootenginear.proximitychat.ProximityChat"
     ]
   },
   "mixins": [
-      "playground.mixins.json"
+    "proximitychat.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3"
