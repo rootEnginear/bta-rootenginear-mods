@@ -28,7 +28,7 @@ public class NetServerHandlerMixin {
 		)
 	)
 	private void proximityChat(ServerConfigurationManager instance, String s) {
-		Pattern playerChatPattern = Pattern.compile("<§.(.+?)§r> §0(.+)");
+		Pattern playerChatPattern = Pattern.compile("<(.+?)> §0(.+)");
 		Matcher result = playerChatPattern.matcher(s);
 
 		if (!result.matches()) {
@@ -36,12 +36,20 @@ public class NetServerHandlerMixin {
 			return;
 		}
 
-		String rawPlayerName = result.group(1);
+		String colorfulName = result.group(1);
+		String rawPlayerName = colorfulName.substring(0, colorfulName.length() - 2).substring(2);
 		String msg = result.group(2);
 
 		PlayerChannelConfig playerData = getPlayerChannelData(rawPlayerName);
-		if (playerData.isGlobal && !msg.startsWith("# ") || !playerData.isGlobal && msg.startsWith("# ")) {
-			instance.sendEncryptedChatToAllPlayers(s.replaceFirst("# ", ""));
+		boolean isGlobal = playerData.isGlobal;
+
+		if (msg.startsWith("# ")) {
+			msg = msg.replaceFirst("# ", "");
+			isGlobal = !isGlobal;
+		}
+
+		if (isGlobal) {
+			instance.sendEncryptedChatToAllPlayers("<" + colorfulName + "> §0" + msg);
 			return;
 		}
 		instance.sendPacketToPlayersAroundPoint(
@@ -50,7 +58,7 @@ public class NetServerHandlerMixin {
 			this.playerEntity.z,
 			playerData.radius,
 			this.playerEntity.dimension,
-			new Packet3Chat("<✉ " + rawPlayerName + "> §0" + msg.replaceFirst("# ", ""))
+			new Packet3Chat("<⧈ " + colorfulName + "> §0" + msg)
 		);
 	}
 }
