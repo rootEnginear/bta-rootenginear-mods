@@ -44,7 +44,7 @@ public class NetServerHandlerMixin {
 		boolean isGlobal = playerData.isGlobal;
 
 		if (msg.startsWith("# ")) {
-			msg = msg.replaceFirst("# ", "");
+			msg = msg.substring(2);
 			isGlobal = !isGlobal;
 		}
 

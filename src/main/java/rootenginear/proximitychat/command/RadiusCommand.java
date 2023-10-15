@@ -6,7 +6,6 @@ import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.net.command.ServerCommand;
 import net.minecraft.server.MinecraftServer;
 import rootenginear.proximitychat.ProximityChat;
-import rootenginear.proximitychat.struct.PlayerChannelConfig;
 
 import static rootenginear.proximitychat.store.PlayerChannelData.getPlayerChannelData;
 import static rootenginear.proximitychat.store.PlayerChannelData.setPlayerRadius;
@@ -26,11 +25,10 @@ public class RadiusCommand extends ServerCommand {
 		}
 
 		String colorfulName = sender.getName() + "§r";
-		String rawName = sender.getName().replaceFirst("§.", "");
+		String rawName = sender.getName().substring(2);
 
 		if (args.length == 0) {
-			PlayerChannelConfig cfg = getPlayerChannelData(rawName);
-			sender.sendMessage(colorfulName + "'s proximity chat radius is: " + cfg.radius);
+			sender.sendMessage(colorfulName + "'s proximity chat radius is: " + getPlayerChannelData(rawName).radius);
 			return true;
 		}
 

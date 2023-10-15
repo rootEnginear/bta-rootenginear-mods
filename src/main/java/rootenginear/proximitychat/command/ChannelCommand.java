@@ -5,10 +5,9 @@ import net.minecraft.core.net.command.CommandHandler;
 import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.net.command.ServerCommand;
 import net.minecraft.server.MinecraftServer;
-import rootenginear.proximitychat.struct.PlayerChannelConfig;
 
 import static rootenginear.proximitychat.store.PlayerChannelData.getPlayerChannelData;
-import static rootenginear.proximitychat.store.PlayerChannelData.setPlayerChannelData;
+import static rootenginear.proximitychat.store.PlayerChannelData.setPlayerChannel;
 
 public class ChannelCommand extends ServerCommand {
 	public ChannelCommand(MinecraftServer server) {
@@ -25,11 +24,10 @@ public class ChannelCommand extends ServerCommand {
 		}
 
 		String colorfulName = sender.getName() + "§r";
-		String rawName = sender.getName().replaceFirst("§.", "");
+		String rawName = sender.getName().substring(2);
 
 		if (args.length == 0) {
-			PlayerChannelConfig cfg = getPlayerChannelData(rawName);
-			sender.sendMessage(colorfulName + "'s current channel is: " + (cfg.isGlobal ? "Global" : "Proximity"));
+			sender.sendMessage(colorfulName + "'s current channel is: " + (getPlayerChannelData(rawName).isGlobal ? "Global" : "Proximity"));
 			return true;
 		}
 
@@ -37,7 +35,7 @@ public class ChannelCommand extends ServerCommand {
 			case "global":
 			case "proximity":
 			case "prox":
-				setPlayerChannelData(rawName, args[0]);
+				setPlayerChannel(rawName, args[0]);
 				sender.sendMessage("Changed " + colorfulName + "'s channel to: " + (args[0].equals("global") ? "Global" : "Proximity"));
 				return true;
 			default:

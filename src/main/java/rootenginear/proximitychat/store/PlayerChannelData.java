@@ -1,5 +1,6 @@
 package rootenginear.proximitychat.store;
 
+import net.minecraft.core.net.command.CommandError;
 import rootenginear.proximitychat.ProximityChat;
 import rootenginear.proximitychat.struct.PlayerChannelConfig;
 
@@ -9,36 +10,17 @@ public class PlayerChannelData {
 	public static HashMap<String, PlayerChannelConfig> playerProxData = new HashMap<>();
 
 	public static PlayerChannelConfig getPlayerChannelData(String rawPlayerName) {
-		if (playerProxData.containsKey(rawPlayerName)) {
-			return playerProxData.get(rawPlayerName);
-		}
-
-		PlayerChannelConfig t = new PlayerChannelConfig(true, ProximityChat.DEFAULT_RADIUS);
-		playerProxData.put(rawPlayerName, t);
-		return t;
+		return playerProxData.computeIfAbsent(rawPlayerName, s -> new PlayerChannelConfig(true, ProximityChat.DEFAULT_RADIUS));
 	}
 
-	public static void setPlayerChannelData(String rawPlayerName, String mode) {
-		if (!mode.equals("global") && !mode.equals("proximity") && !mode.equals("prox")) return;
+	public static void setPlayerChannel(String rawPlayerName, String channel) {
+		if (!channel.equals("global") && !channel.equals("proximity") && !channel.equals("prox"))
+			throw new CommandError("Invalid channel name: " + channel);
 
-		if (!playerProxData.containsKey(rawPlayerName)) {
-			playerProxData.put(rawPlayerName, new PlayerChannelConfig(mode.equals("global"), ProximityChat.DEFAULT_RADIUS));
-			return;
-		}
-
-		PlayerChannelConfig t = playerProxData.get(rawPlayerName);
-		t.isGlobal = mode.equals("global");
-		playerProxData.replace(rawPlayerName, t);
+		getPlayerChannelData(rawPlayerName).isGlobal = channel.equals("global");
 	}
 
 	public static void setPlayerRadius(String rawPlayerName, int radius) {
-		if (!playerProxData.containsKey(rawPlayerName)) {
-			playerProxData.put(rawPlayerName, new PlayerChannelConfig(true, radius));
-			return;
-		}
-
-		PlayerChannelConfig t = playerProxData.get(rawPlayerName);
-		t.radius = radius;
-		playerProxData.replace(rawPlayerName, t);
+		getPlayerChannelData(rawPlayerName).radius = radius;
 	}
 }
