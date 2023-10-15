@@ -5,14 +5,15 @@ import net.minecraft.core.net.command.CommandHandler;
 import net.minecraft.core.net.command.CommandSender;
 import net.minecraft.core.net.command.ServerCommand;
 import net.minecraft.server.MinecraftServer;
+import rootenginear.proximitychat.ProximityChat;
 import rootenginear.proximitychat.struct.PlayerChannelConfig;
 
 import static rootenginear.proximitychat.store.PlayerChannelData.getPlayerChannelData;
-import static rootenginear.proximitychat.store.PlayerChannelData.setPlayerChannelData;
+import static rootenginear.proximitychat.store.PlayerChannelData.setPlayerRadius;
 
-public class ChannelCommand extends ServerCommand {
-	public ChannelCommand(MinecraftServer server) {
-		super(server, "channel", "ch");
+public class RadiusCommand extends ServerCommand {
+	public RadiusCommand(MinecraftServer server) {
+		super(server, "radius", "rad");
 	}
 
 	@Override
@@ -29,20 +30,25 @@ public class ChannelCommand extends ServerCommand {
 
 		if (args.length == 0) {
 			PlayerChannelConfig cfg = getPlayerChannelData(rawName);
-			sender.sendMessage(colorfulName + "'s current channel is: " + (cfg.isGlobal ? "Global" : "Proximity"));
+			sender.sendMessage(colorfulName + "'s proximity chat radius is: " + cfg.radius);
 			return true;
 		}
 
-		switch (args[0]) {
-			case "global":
-			case "proximity":
-			case "prox":
-				setPlayerChannelData(rawName, args[0]);
-				sender.sendMessage("Changed " + colorfulName + "'s channel to: " + (args[0].equals("global") ? "Global" : "Proximity"));
-				return true;
-			default:
-				return false;
+		int newRadius;
+		try {
+			newRadius = Integer.parseInt(args[0]);
+		} catch (Exception e) {
+			throw new CommandError("Not a number: \"" + args[0] + "\"");
 		}
+
+		if (newRadius > ProximityChat.MAX_RADIUS) {
+			sender.sendMessage("Your radius (" + newRadius + ") exceeds the limit (" + ProximityChat.MAX_RADIUS + ").");
+			newRadius = ProximityChat.MAX_RADIUS;
+		}
+
+		setPlayerRadius(rawName, newRadius);
+		sender.sendMessage("Changed " + colorfulName + "'s proximity chat radius to: " + newRadius);
+		return true;
 	}
 
 	@Override
@@ -52,7 +58,7 @@ public class ChannelCommand extends ServerCommand {
 
 	@Override
 	public void sendCommandSyntax(CommandHandler handler, CommandSender sender) {
-		sender.sendMessage("/channel");
-		sender.sendMessage("/channel <global|prox>");
+		sender.sendMessage("/radius");
+		sender.sendMessage("/radius <number>");
 	}
 }

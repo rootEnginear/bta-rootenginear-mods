@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import rootenginear.proximitychat.command.ChannelCommand;
+import rootenginear.proximitychat.command.RadiusCommand;
 
 import java.util.List;
 
@@ -20,5 +21,6 @@ public class CommandsMixin {
 	@Inject(method = "initServerCommands", at = @At("TAIL"))
 	private static void addChannelCmd(MinecraftServer server, CallbackInfo ci) {
 		commands.add(new ChannelCommand(server));
+		commands.add(new RadiusCommand(server));
 	}
 }

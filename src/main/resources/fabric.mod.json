@@ -1,29 +1,29 @@
 {
-  "schemaVersion": 1,
-  "id": "playground",
-  "version": "${version}",
-  "name": "Playground",
-  "description": "This is the beginning of awesome mods!",
-  "authors": [
-    "rootEnginear"
-  ],
+	"schemaVersion": 1,
+	"id": "proximitychat",
+	"version": "${version}",
+	"name": "Proximity Chat",
+	"description": "Communicate with other players within a certain radius.",
+	"authors": [
+		"rootEnginear"
+	],
 	"icon": "icon.png",
-  "contact": {
-    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
-  },
-  "license": "CC0-1.0",
-  "environment": "*",
-  "entrypoints": {
-    "server": [
+	"contact": {
+		"homepage": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/proximity-chat",
+		"sources": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/proximity-chat",
+		"issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
+	},
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"server": [
 			"rootenginear.proximitychat.ProximityChat"
-    ]
-  },
-  "mixins": [
-    "proximitychat.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.13.3"
-  }
+		]
+	},
+	"mixins": [
+		"proximitychat.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.13.3"
+	}
 }

@@ -2,7 +2,7 @@
 
 # Proximity Chat
 
-Select your chat channel and keep the chat within a circle.
+Communicate with other players within a certain radius. Talking to your friends in private, or roleplaying with ease.
 
 > **Important**
 > - This is a **server-side mod**. You must install it on the server.
@@ -10,7 +10,9 @@ Select your chat channel and keep the chat within a circle.
 
 ## Features
 
-- Chat can be sent to a set radius of the player using proximity channel.
-- Select your channel with `/channel global` or `/channel prox`. Your later message will be sent into the selected channel.
-- If you're in the global chat, you can quickly send a proximity message by adding `# ` (a hash and 1 space) in front of your message. Eg: `# Is anyone around me?`.
-- Set your proximity radius with `/radius <radius>`. Eg: `/radius 50`.
+- Select your channel with `/channel global` or `/channel prox`.
+- Change the radius of your proximity chat with `/radius <radius>` (Eg: `/radius 50`).
+- Quickly send a proximity message from the global channel (and vice versa!) by adding `# ` (hash and space) to the
+  beginning of your message. Eg: `# Is anyone around me?`.
+- Server operators can change the default (`default-proximity-radius=50`) and maximum proximity
+  radii (`max-proximity-radius=50`) in the `server.properties` file.
