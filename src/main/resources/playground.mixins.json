@@ -1,11 +1,15 @@
 {
-    "required": true,
-    "minVersion": "0.8",
-    "package": "rootenginear.playground.mixin",
-    "compatibilityLevel": "JAVA_8",
-    "mixins": [
-    ],
-    "injectors": {
-        "defaultRequire": 1
+  "required": true,
+  "minVersion": "0.8",
+  "package": "rootenginear.leavesalwaysfalling.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "EntityLeafFXMixin",
+    "GenericLeavesParticleMixin",
+    "SeasonalLeavesParticleMixin",
+    "accessors.EntityFXAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
   }
 }
