@@ -1,4 +1,4 @@
-package rootenginear.playground.mixin;
+package rootenginear.sortchest.mixin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChest;
@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import rootenginear.playground.Playground;
-import rootenginear.playground.mixin.accessor.GuiChestAccessor;
-import rootenginear.playground.mixin.accessor.GuiScreenAccessor;
+import rootenginear.sortchest.SortChest;
+import rootenginear.sortchest.mixin.accessor.GuiChestAccessor;
+import rootenginear.sortchest.mixin.accessor.GuiScreenAccessor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,12 +95,12 @@ public class GuiContainerMixin {
 
 			int aMeta = a.getMetadata();
 			int zMeta = z.getMetadata();
-			Playground.LOGGER.info("Comparing " + a + " to " + z);
-			Playground.LOGGER.info("A meta: " + aMeta + ", Z meta: " + zMeta);
+			SortChest.LOGGER.info("Comparing " + a + " to " + z);
+			SortChest.LOGGER.info("A meta: " + aMeta + ", Z meta: " + zMeta);
 			if (aMeta != zMeta) return aMeta - zMeta;
 
-			Playground.LOGGER.info("Comparing " + a + " to " + z);
-			Playground.LOGGER.info("A size: " + a.stackSize + ", Z size: " + z.stackSize);
+			SortChest.LOGGER.info("Comparing " + a + " to " + z);
+			SortChest.LOGGER.info("A size: " + a.stackSize + ", Z size: " + z.stackSize);
 			return z.stackSize - a.stackSize;
 		}).collect(Collectors.toList());
 
@@ -108,7 +108,7 @@ public class GuiContainerMixin {
 			ItemStack sortedItem = sorted.get(i);
 			if (sortedItem == null) break;
 
-			Playground.LOGGER.info(String.valueOf(sortedItem.stackSize));
+			SortChest.LOGGER.info(String.valueOf(sortedItem.stackSize));
 		}
 		for (int i = 0; i < countInvSlots; i++) {
 			ItemStack sortedItem = sorted.get(i);

@@ -1,4 +1,4 @@
-package rootenginear.playground.mixin.accessor;
+package rootenginear.sortchest.mixin.accessor;
 
 import net.minecraft.client.gui.GuiChest;
 import org.spongepowered.asm.mixin.Mixin;
