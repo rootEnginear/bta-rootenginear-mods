@@ -5,11 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SortChest implements ModInitializer {
-    public static final String MOD_ID = "playground";
+    public static final String MOD_ID = "sortchest";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Playground initialized.");
+        LOGGER.info("Sort Chest initialized.");
     }
 }

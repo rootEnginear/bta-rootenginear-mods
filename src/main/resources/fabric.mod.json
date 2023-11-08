@@ -21,7 +21,7 @@
 		]
 	},
 	"mixins": [
-		"playground.mixins.json"
+		"sortchest.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.13.3"
