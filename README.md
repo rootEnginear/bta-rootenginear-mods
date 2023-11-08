@@ -11,8 +11,9 @@ Organize your chests instantly with a single keystroke
 
 1. Open a chest
 2. Press a key:
-    - `S`: Sort (will also auto merge)
-    - `M`: Merge (try to merge stacks together)
+    - `S`: Sort
+    - `F`: Fill (inventory → chest)
+    - `D`: Dump (chest → inventory)
 
 ## FAQ
 
