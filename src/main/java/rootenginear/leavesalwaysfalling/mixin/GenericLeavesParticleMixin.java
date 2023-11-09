@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import rootenginear.leavesalwaysfalling.LeavesAlwaysFalling;
 
 import java.util.Random;
 
@@ -16,7 +17,7 @@ public class GenericLeavesParticleMixin {
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand, CallbackInfo ci) {
 		Block block = world.getBlock(x, y, z);
 		if (block instanceof BlockLeavesBase) {
-			if (rand.nextInt(40) == 0) {
+			if (rand.nextInt(LeavesAlwaysFalling.getLeaveFrequency()) == 0) {
 				world.spawnParticle("fallingleaf", x, (float) y - 0.1f, z, 0.0, 0.0, 0.0);
 			}
 			ci.cancel();

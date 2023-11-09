@@ -18,6 +18,9 @@
 	"entrypoints": {
 		"main": [
 			"rootenginear.leavesalwaysfalling.LeavesAlwaysFalling"
+		],
+		"modmenu": [
+			"rootenginear.leavesalwaysfalling.ModMenuModule"
 		]
 	},
 	"mixins": [
@@ -25,5 +28,8 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.13.3"
+	},
+	"custom": {
+		"modmenu:clientsideOnly": true
 	}
 }
