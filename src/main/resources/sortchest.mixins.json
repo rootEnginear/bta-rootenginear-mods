@@ -4,9 +4,10 @@
   "package": "rootenginear.sortchest.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "GuiChestMixin",
     "GuiContainerMixin",
+    "GuiScreenMixin",
     "accessor.GuiChestAccessor",
+    "accessor.GuiContainerAccessor",
     "accessor.GuiScreenAccessor"
   ],
   "injectors": {

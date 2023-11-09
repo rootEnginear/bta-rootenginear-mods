@@ -2,7 +2,6 @@ package rootenginear.sortchest.mixin.accessor;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.render.FontRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
@@ -10,7 +9,4 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface GuiScreenAccessor {
 	@Accessor
 	Minecraft getMc();
-
-	@Accessor
-	FontRenderer getFontRenderer();
 }

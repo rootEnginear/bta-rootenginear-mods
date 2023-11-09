@@ -1,8 +1,8 @@
 package rootenginear.sortchest.mixin;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiChest;
 import net.minecraft.client.gui.GuiContainer;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.player.controller.PlayerController;
 import net.minecraft.core.InventoryAction;
 import net.minecraft.core.entity.player.EntityPlayer;
@@ -14,8 +14,11 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import rootenginear.sortchest.gui.GuiSortChestButton;
 import rootenginear.sortchest.mixin.accessor.GuiChestAccessor;
+import rootenginear.sortchest.mixin.accessor.GuiContainerAccessor;
 import rootenginear.sortchest.mixin.accessor.GuiScreenAccessor;
+import rootenginear.sortchest.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,14 +29,15 @@ import java.util.stream.Collectors;
 public class GuiContainerMixin {
 	@Inject(method = "keyTyped", at = @At("HEAD"), cancellable = true)
 	private void doSort(char c, int _i, int mouseX, int mouseY, CallbackInfo ci) {
-		GuiContainer containerThis = (GuiContainer) (Object) this;
-		if (!(containerThis instanceof GuiChest)) return;
+		if (Utils.isNotChest(this)) return;
 
 		char key = Character.toLowerCase(c);
 		if (key != 's' && key != 'd' && key != 'f') return;
 
-		GuiScreenAccessor screenThis = (GuiScreenAccessor) containerThis;
-		Minecraft mc = screenThis.getMc();
+		GuiContainer containerThis = (GuiContainer) (Object) this;
+		GuiScreenAccessor screenAccessorThis = (GuiScreenAccessor) this;
+
+		Minecraft mc = screenAccessorThis.getMc();
 		PlayerController playerController = mc.playerController;
 		EntityPlayer entityPlayer = mc.thePlayer;
 		Container inventorySlots = containerThis.inventorySlots;
@@ -56,25 +60,6 @@ public class GuiContainerMixin {
 			ci.cancel();
 			return;
 		}
-
-		// "*S" - Shuffle
-//		boolean shiftOrCtrlPressed = Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54) || Keyboard.isKeyDown(29) || Keyboard.isKeyDown(157);
-//		if (shiftOrCtrlPressed) {
-//			Random rand = new Random();
-//
-//			playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{0, 0}, entityPlayer);
-//			for (int i = 0; i < 100; i++) {
-//				if (rand.nextInt(2) == 0) {
-//					playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{rand.nextInt(countInvSlots - 1) + 1, 0}, entityPlayer);
-//				} else {
-//					playerController.doInventoryAction(windowId, InventoryAction.CLICK_RIGHT, new int[]{rand.nextInt(countInvSlots - 1) + 1, 0}, entityPlayer);
-//				}
-//			}
-//			playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{0, 0}, entityPlayer);
-//
-//			ci.cancel();
-//			return;
-//		}
 
 		// "S" - Sort
 		mergeItemsInChest(playerController, entityPlayer, windowId, countInvSlots, inventorySlots);
@@ -177,16 +162,31 @@ public class GuiContainerMixin {
 		playerController.doInventoryAction(windowId, InventoryAction.MOVE_ALL, new int[]{countInvSlots + (9 * 3), 0}, entityPlayer);
 	}
 
-//	@Inject(method = "initGui", at = @At("TAIL"))
-//	private void addChestButtons(CallbackInfo ci) {
-//		GuiContainer containerThis = (GuiContainer) (Object) this;
-//		if (!(containerThis instanceof GuiChest)) return;
-//
-//		GuiScreen screenThis = (GuiScreen) (Object) this;
-//		screenThis.controlList.clear();
-//		int centerX = (screenThis.width - containerThis.xSize) / 2;
-//		int centerY = (screenThis.height - containerThis.ySize) / 2;
-//		screenThis.controlList.add(new GuiButton(0, centerX + containerThis.xSize - 8 - 12 - 12 - 4, centerY + 4, 12, 12, "⇵"));
-//		screenThis.controlList.add(new GuiButton(1, centerX + containerThis.xSize - 8 - 12, centerY + 4, 12, 12, "⊼"));
-//	}
+	@Inject(method = "initGui", at = @At("TAIL"))
+	private void addChestButtons(CallbackInfo ci) {
+		if (Utils.isNotChest(this)) return;
+
+		GuiContainer containerThis = (GuiContainer) (Object) this;
+		GuiScreen screenThis = (GuiScreen) (Object) this;
+
+		screenThis.controlList.clear();
+		int centerX = (screenThis.width - containerThis.xSize) / 2;
+		int centerY = (screenThis.height - containerThis.ySize) / 2;
+		screenThis.controlList.add(new GuiSortChestButton(0, centerX + containerThis.xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵", 3, "Sort [S]"));
+		screenThis.controlList.add(new GuiSortChestButton(1, centerX + containerThis.xSize - 8 - 12, centerY + 4, 12, 12, "⊼", 3, "Fill [F]"));
+		screenThis.controlList.add(new GuiSortChestButton(2, centerX + containerThis.xSize - 8 - 12, centerY + containerThis.ySize - 96 - 1, 12, 12, "⊻", 3, "Dump [D]"));
+	}
+
+	@Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lorg/lwjgl/opengl/GL11;glEnable(I)V"))
+	private void renderChestButtonTooltip(int x, int y, float renderPartialTicks, CallbackInfo ci) {
+		if (Utils.isNotChest(this)) return;
+
+		GuiScreen screenThis = (GuiScreen) (Object) this;
+		for (int i = 0; i < screenThis.controlList.size(); ++i) {
+			GuiSortChestButton button = (GuiSortChestButton) screenThis.controlList.get(i);
+			if (!button.isHovered(x, y)) continue;
+			GuiContainerAccessor containerAccessorThis = (GuiContainerAccessor) this;
+			containerAccessorThis.getGuiTooltip().render(button.getTooltipText(), x, y, 8, -8);
+		}
+	}
 }
