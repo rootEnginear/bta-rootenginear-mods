@@ -21,7 +21,7 @@
 		]
 	},
 	"mixins": [
-		"playground.mixins.json"
+		"leavesalwaysfalling.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.13.3"
