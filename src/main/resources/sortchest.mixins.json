@@ -6,9 +6,11 @@
   "client": [
     "GuiContainerMixin",
     "GuiScreenMixin",
+    "I18nMixin",
     "accessor.GuiChestAccessor",
     "accessor.GuiContainerAccessor",
-    "accessor.GuiScreenAccessor"
+    "accessor.GuiScreenAccessor",
+    "accessor.LanguageAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

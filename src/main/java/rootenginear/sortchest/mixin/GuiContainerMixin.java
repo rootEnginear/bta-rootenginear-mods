@@ -7,6 +7,7 @@ import net.minecraft.client.player.controller.PlayerController;
 import net.minecraft.core.InventoryAction;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.lang.I18n;
 import net.minecraft.core.player.inventory.Container;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -164,6 +165,7 @@ public class GuiContainerMixin {
 
 	@Inject(method = "initGui", at = @At("TAIL"))
 	private void addChestButtons(CallbackInfo ci) {
+		I18n i18n = I18n.getInstance();
 		if (Utils.isNotChest(this)) return;
 
 		GuiContainer containerThis = (GuiContainer) (Object) this;
@@ -172,9 +174,9 @@ public class GuiContainerMixin {
 		screenThis.controlList.clear();
 		int centerX = (screenThis.width - containerThis.xSize) / 2;
 		int centerY = (screenThis.height - containerThis.ySize) / 2;
-		screenThis.controlList.add(new GuiSortChestButton(0, centerX + containerThis.xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵", 3, "Sort [S]"));
-		screenThis.controlList.add(new GuiSortChestButton(1, centerX + containerThis.xSize - 8 - 12, centerY + 4, 12, 12, "⊼", 3, "Fill [F]"));
-		screenThis.controlList.add(new GuiSortChestButton(2, centerX + containerThis.xSize - 8 - 12, centerY + containerThis.ySize - 96 - 1, 12, 12, "⊻", 3, "Dump [D]"));
+		screenThis.controlList.add(new GuiSortChestButton(0, centerX + containerThis.xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵", 3, i18n.translateKey("sortchest.sort")));
+		screenThis.controlList.add(new GuiSortChestButton(1, centerX + containerThis.xSize - 8 - 12, centerY + 4, 12, 12, "⊼", 3, i18n.translateKey("sortchest.fill")));
+		screenThis.controlList.add(new GuiSortChestButton(2, centerX + containerThis.xSize - 8 - 12, centerY + containerThis.ySize - 96 - 1, 12, 12, "⊻", 3, i18n.translateKey("sortchest.dump")));
 	}
 
 	@Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lorg/lwjgl/opengl/GL11;glEnable(I)V"))
