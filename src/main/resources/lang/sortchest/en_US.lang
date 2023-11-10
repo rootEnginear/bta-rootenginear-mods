@@ -1,3 +1,4 @@
-sortchest.sort=Sort [S]
-sortchest.fill=Fill [F]
-sortchest.dump=Dump [D]
+sortchest.sort=Sort
+sortchest.fill=Fill
+sortchest.dump=Dump
+options.category.sortchest=Sort Chest

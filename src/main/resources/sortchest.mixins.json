@@ -4,11 +4,14 @@
   "package": "rootenginear.sortchest.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "GameSettingsMixin",
     "GuiContainerMixin",
     "GuiScreenMixin",
     "I18nMixin",
     "accessor.GuiChestAccessor",
     "accessor.GuiContainerAccessor",
+    "accessor.GuiOptionsPageControlsAccessor",
+    "accessor.GuiOptionsPageOptionBaseAccessor",
     "accessor.GuiScreenAccessor",
     "accessor.LanguageAccessor"
   ],
