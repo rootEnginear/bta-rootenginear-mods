@@ -22,7 +22,7 @@ public class SeasonalLeavesParticleMixin {
 			ci.cancel();
 			return;
 		}
-		if (rand.nextInt(randomBound) == 0) {
+		if (rand.nextInt(100) < randomBound) {
 			world.spawnParticle("fallingleaf", x, (float) y - 0.1f, z, 0.0, 0.0, 0.0);
 		}
 		ci.cancel();
