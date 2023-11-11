@@ -58,7 +58,7 @@ public class NetServerHandlerMixin {
 			this.playerEntity.z,
 			playerData.radius,
 			this.playerEntity.dimension,
-			new Packet3Chat("<⧈ " + colorfulName + "> §0" + msg)
+			new Packet3Chat("<◎ " + colorfulName + "> §0" + msg)
 		);
 	}
 }
