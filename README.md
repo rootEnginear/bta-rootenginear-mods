@@ -2,7 +2,7 @@
 
 # Leaves Always Falling
 
-Who doesn't love a dramatic effect?
+Make every leaf spawn leaf particles constantly, regardless of the season. Who doesn't love a dramatic effect?
 
 > **Important**
 > Required [Babric](https://github.com/Turnip-Labs/babric-instance-repo/releases) to run the mod.

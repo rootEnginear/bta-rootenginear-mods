@@ -3,7 +3,7 @@
 	"id": "leavesalwaysfalling",
 	"version": "${version}",
 	"name": "Leaves Always Falling",
-	"description": "Always spawn leaf particles, no matter what the season is.",
+	"description": "Make every leaf spawn leaf particles constantly, regardless of the season.",
 	"authors": [
 		"rootEnginear"
 	],
