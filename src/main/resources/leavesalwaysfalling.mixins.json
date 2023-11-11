@@ -7,8 +7,10 @@
     "EntityLeafFXMixin",
     "GameSettingsMixin",
     "GenericLeavesParticleMixin",
+    "I18nMixin",
     "SeasonalLeavesParticleMixin",
-    "accessors.EntityFXAccessor"
+    "accessors.EntityFXAccessor",
+    "accessors.LanguageAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

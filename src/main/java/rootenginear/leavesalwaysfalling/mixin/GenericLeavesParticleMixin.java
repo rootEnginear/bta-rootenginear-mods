@@ -17,7 +17,12 @@ public class GenericLeavesParticleMixin {
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand, CallbackInfo ci) {
 		Block block = world.getBlock(x, y, z);
 		if (block instanceof BlockLeavesBase) {
-			if (rand.nextInt(LeavesAlwaysFalling.getLeaveFrequency()) == 0) {
+			int randomBound = LeavesAlwaysFalling.getLeavesRandomBound();
+			if (randomBound == 0) {
+				ci.cancel();
+				return;
+			}
+			if (rand.nextInt(randomBound) == 0) {
 				world.spawnParticle("fallingleaf", x, (float) y - 0.1f, z, 0.0, 0.0, 0.0);
 			}
 			ci.cancel();

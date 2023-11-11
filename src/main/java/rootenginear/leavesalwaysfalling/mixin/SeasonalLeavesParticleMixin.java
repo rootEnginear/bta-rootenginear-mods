@@ -17,7 +17,12 @@ import java.util.Random;
 public class SeasonalLeavesParticleMixin {
 	@Inject(method = "randomDisplayTick", at = @At("HEAD"), cancellable = true)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand, CallbackInfo ci) {
-		if (rand.nextInt(LeavesAlwaysFalling.getLeaveFrequency()) == 0) {
+		int randomBound = LeavesAlwaysFalling.getLeavesRandomBound();
+		if (randomBound == 0) {
+			ci.cancel();
+			return;
+		}
+		if (rand.nextInt(randomBound) == 0) {
 			world.spawnParticle("fallingleaf", x, (float) y - 0.1f, z, 0.0, 0.0, 0.0);
 		}
 		ci.cancel();

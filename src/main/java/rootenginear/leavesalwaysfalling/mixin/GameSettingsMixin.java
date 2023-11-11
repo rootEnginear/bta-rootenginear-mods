@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rootenginear.leavesalwaysfalling.ILeavesSettings;
+import rootenginear.leavesalwaysfalling.interfaces.ILeavesSettings;
 
 @Mixin(value = {GameSettings.class}, remap = false)
 public class GameSettingsMixin implements ILeavesSettings {
@@ -16,17 +16,26 @@ public class GameSettingsMixin implements ILeavesSettings {
 	private final GameSettings self = (GameSettings) (Object) this;
 
 	@Unique
-	public RangeOption leaveFrequency = new RangeOption(self, "Leave Frequency", 39, 40);
+	public RangeOption leavesFrequency = new RangeOption(self, "leavesalwaysfalling.frequency", 3, 101);
 
 	@Inject(method = "getDisplayString", at = @At("HEAD"), cancellable = true)
 	private void customDisplayString(Option<?> option, CallbackInfoReturnable<String> cir) {
-		if (option == leaveFrequency) {
-			cir.setReturnValue(((int) option.value + 1) + "");
+		if (option == leavesFrequency) {
+			int value = (int) option.value;
+			if (value == 0) {
+				cir.setReturnValue("Never");
+				return;
+			}
+			if (value == 100) {
+				cir.setReturnValue("GPU goes brrr");
+				return;
+			}
+			cir.setReturnValue(value + "%");
 		}
 	}
 
 	@Unique
-	public RangeOption bta_rootenginear_mods$getLeaveFrequency() {
-		return leaveFrequency;
+	public RangeOption bta_rootenginear_mods$getFrequency() {
+		return leavesFrequency;
 	}
 }

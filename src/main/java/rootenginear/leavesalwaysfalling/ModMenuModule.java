@@ -3,6 +3,7 @@ package rootenginear.leavesalwaysfalling;
 import io.github.prospector.modmenu.api.ModMenuApi;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import rootenginear.leavesalwaysfalling.gui.GuiOptionsPageLeaves;
 
 import java.util.function.Function;
 
