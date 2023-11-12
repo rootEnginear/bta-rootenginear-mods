@@ -5,6 +5,8 @@ import net.minecraft.client.option.KeyBinding;
 public interface ISortChestSettings {
 	KeyBinding bta_rootenginear_mods$getKeySort();
 
+	KeyBinding bta_rootenginear_mods$getKeyRefill();
+
 	KeyBinding bta_rootenginear_mods$getKeyFill();
 
 	KeyBinding bta_rootenginear_mods$getKeyDump();

@@ -22,6 +22,12 @@ public class GuiModMenuOptionsPage extends GuiOptionsPageControls {
 		opcThis.setKeyBindings(new ArrayList<>());
 
 		ISortChestSettings iSortChestSettings = (ISortChestSettings) settings;
-		this.addKeyBindingsCategory("options.category.sortchest", iSortChestSettings.bta_rootenginear_mods$getKeySort(), iSortChestSettings.bta_rootenginear_mods$getKeyFill(), iSortChestSettings.bta_rootenginear_mods$getKeyDump());
+		this.addKeyBindingsCategory(
+			"options.category.sortchest",
+			iSortChestSettings.bta_rootenginear_mods$getKeySort(),
+			iSortChestSettings.bta_rootenginear_mods$getKeyRefill(),
+			iSortChestSettings.bta_rootenginear_mods$getKeyFill(),
+			iSortChestSettings.bta_rootenginear_mods$getKeyDump()
+		);
 	}
 }

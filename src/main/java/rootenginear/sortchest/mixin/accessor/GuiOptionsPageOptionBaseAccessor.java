@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.util.List;
 
-@Mixin(value = {GuiOptionsPageOptionBase.class})
+@Mixin(value = {GuiOptionsPageOptionBase.class}, remap = false)
 public interface GuiOptionsPageOptionBaseAccessor {
 	@Accessor("categoryKeys")
 	void setCategoryKeys(List<String> categoryKeys);

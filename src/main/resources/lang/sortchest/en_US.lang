@@ -1,4 +1,5 @@
 sortchest.sort=Sort
+sortchest.refill=Refill
 sortchest.fill=Fill
 sortchest.dump=Dump
 options.category.sortchest=Sort Chest

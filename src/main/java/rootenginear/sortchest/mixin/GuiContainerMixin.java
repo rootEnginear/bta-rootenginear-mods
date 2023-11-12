@@ -3,6 +3,7 @@ package rootenginear.sortchest.mixin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiContainer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTooltip;
 import net.minecraft.client.player.controller.PlayerController;
 import net.minecraft.core.InventoryAction;
 import net.minecraft.core.entity.player.EntityPlayer;
@@ -11,6 +12,7 @@ import net.minecraft.core.lang.I18n;
 import net.minecraft.core.player.inventory.Container;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,8 +20,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import rootenginear.sortchest.gui.GuiSortChestButton;
 import rootenginear.sortchest.interfaces.ISortChestSettings;
 import rootenginear.sortchest.mixin.accessor.GuiChestAccessor;
-import rootenginear.sortchest.mixin.accessor.GuiContainerAccessor;
-import rootenginear.sortchest.mixin.accessor.GuiScreenAccessor;
 import rootenginear.sortchest.utils.Utils;
 
 import java.util.ArrayList;
@@ -29,29 +29,36 @@ import java.util.stream.Collectors;
 
 @Mixin(value = {GuiContainer.class}, remap = false)
 public class GuiContainerMixin {
+	@Shadow
+	public Container inventorySlots;
+
+	@Shadow
+	public int xSize;
+
+	@Shadow
+	public int ySize;
+
+	@Shadow
+	GuiTooltip guiTooltip;
+
 	@Inject(method = "keyTyped", at = @At("HEAD"), cancellable = true)
 	private void doSort(char c, int _i, int mouseX, int mouseY, CallbackInfo ci) {
 		if (Utils.isNotChest(this)) return;
 
-		char key = Character.toUpperCase(c);
-
 		ISortChestSettings gameSettings = ((ISortChestSettings) Minecraft.getMinecraft(Minecraft.class).gameSettings);
 		char keySort = gameSettings.bta_rootenginear_mods$getKeySort().getKeyName().charAt(0);
+		char keyRefill = gameSettings.bta_rootenginear_mods$getKeyRefill().getKeyName().charAt(0);
 		char keyFill = gameSettings.bta_rootenginear_mods$getKeyFill().getKeyName().charAt(0);
 		char keyDump = gameSettings.bta_rootenginear_mods$getKeyDump().getKeyName().charAt(0);
 
-		if (key != keySort && key != keyFill && key != keyDump) return;
+		char key = Character.toUpperCase(c);
+		if (key != keySort && key != keyRefill && key != keyFill && key != keyDump) return;
 
-		GuiContainer containerThis = (GuiContainer) (Object) this;
-		GuiScreenAccessor screenAccessorThis = (GuiScreenAccessor) this;
-
-		Minecraft mc = screenAccessorThis.getMc();
+		Minecraft mc = Minecraft.getMinecraft(Minecraft.class);
 		PlayerController playerController = mc.playerController;
 		EntityPlayer entityPlayer = mc.thePlayer;
-		Container inventorySlots = containerThis.inventorySlots;
 		int windowId = inventorySlots.windowId;
 
-		// "D" - Dump chest to inv
 		if (key == keyDump) {
 			dumpItemFromChest(playerController, entityPlayer, windowId);
 
@@ -59,9 +66,8 @@ public class GuiContainerMixin {
 			return;
 		}
 
-		int countInvSlots = ((GuiChestAccessor) containerThis).getInventoryRows() * 9;
+		int countInvSlots = ((GuiChestAccessor) this).getInventoryRows() * 9;
 
-		// "F" - Fill chest
 		if (key == keyFill) {
 			dumpItemToChest(playerController, entityPlayer, windowId, countInvSlots);
 
@@ -69,7 +75,13 @@ public class GuiContainerMixin {
 			return;
 		}
 
-		// "S" - Sort
+		if (key == keyRefill) {
+			refillChest(playerController, entityPlayer, windowId, countInvSlots, inventorySlots);
+
+			ci.cancel();
+			return;
+		}
+
 		mergeItemsInChest(playerController, entityPlayer, windowId, countInvSlots, inventorySlots);
 		sortItemsInChest(playerController, entityPlayer, windowId, countInvSlots, inventorySlots);
 
@@ -170,36 +182,64 @@ public class GuiContainerMixin {
 		playerController.doInventoryAction(windowId, InventoryAction.MOVE_ALL, new int[]{countInvSlots + (9 * 3), 0}, entityPlayer);
 	}
 
+	@Unique
+	private void refillChest(PlayerController playerController, EntityPlayer entityPlayer, int windowId, int countInvSlots, Container inventorySlots) {
+		List<String> chestItems = new ArrayList<>(countInvSlots);
+		for (int i = 0; i < countInvSlots; i++) {
+			ItemStack item = inventorySlots.getSlot(i).getStack();
+			if (item == null) continue;
+
+			String itemStr = item.itemID + ":" + item.getMetadata();
+			if (!chestItems.contains(itemStr)) chestItems.add(itemStr);
+		}
+		for (int i = countInvSlots; i < countInvSlots + (9 * 4); i++) {
+			ItemStack invItem = inventorySlots.getSlot(i).getStack();
+			if (invItem == null) continue;
+
+			String invItemStr = invItem.itemID + ":" + invItem.getMetadata();
+			if (!chestItems.contains(invItemStr)) continue;
+
+			playerController.doInventoryAction(windowId, InventoryAction.MOVE_SIMILAR, new int[]{i, 0}, entityPlayer);
+			chestItems.remove(invItemStr);
+		}
+	}
+
 	@Inject(method = "initGui", at = @At("TAIL"))
 	private void addChestButtons(CallbackInfo ci) {
-		I18n i18n = I18n.getInstance();
 		if (Utils.isNotChest(this)) return;
 
-		GuiContainer containerThis = (GuiContainer) (Object) this;
 		GuiScreen screenThis = (GuiScreen) (Object) this;
 
-		screenThis.controlList.clear();
-
-		int centerX = (screenThis.width - containerThis.xSize) / 2;
-		int centerY = (screenThis.height - containerThis.ySize) / 2;
+		int centerX = (screenThis.width - xSize) / 2;
+		int centerY = (screenThis.height - ySize) / 2;
 
 		ISortChestSettings gameSettings = ((ISortChestSettings) Minecraft.getMinecraft(Minecraft.class).gameSettings);
 		String keySort = gameSettings.bta_rootenginear_mods$getKeySort().getKeyName();
+		String keyRefill = gameSettings.bta_rootenginear_mods$getKeyRefill().getKeyName();
 		String keyFill = gameSettings.bta_rootenginear_mods$getKeyFill().getKeyName();
 		String keyDump = gameSettings.bta_rootenginear_mods$getKeyDump().getKeyName();
 
+		I18n i18n = I18n.getInstance();
+
+		screenThis.controlList.clear();
 		screenThis.controlList.add(
-			new GuiSortChestButton(0, centerX + containerThis.xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵", 3,
+			new GuiSortChestButton(0, centerX + xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵", 3,
 				i18n.translateKey("sortchest.sort") + " [" + keySort + "]"
 			)
 		);
 		screenThis.controlList.add(
-			new GuiSortChestButton(1, centerX + containerThis.xSize - 8 - 12, centerY + 4, 12, 12, "⊼", 3,
+			new GuiSortChestButton(1, centerX + xSize - 8 - 12, centerY + 4, 12, 12, "∑", 3,
+				i18n.translateKey("sortchest.refill") + " [" + keyRefill + "]"
+			)
+		);
+
+		screenThis.controlList.add(
+			new GuiSortChestButton(2, centerX + xSize - 8 - 12 - 12 - 2, centerY + ySize - 96 - 1, 12, 12, "⊼", 3,
 				i18n.translateKey("sortchest.fill") + " [" + keyFill + "]"
 			)
 		);
 		screenThis.controlList.add(
-			new GuiSortChestButton(2, centerX + containerThis.xSize - 8 - 12, centerY + containerThis.ySize - 96 - 1, 12, 12, "⊻", 3,
+			new GuiSortChestButton(3, centerX + xSize - 8 - 12, centerY + ySize - 96 - 1, 12, 12, "⊻", 3,
 				i18n.translateKey("sortchest.dump") + " [" + keyDump + "]"
 			)
 		);
@@ -213,8 +253,7 @@ public class GuiContainerMixin {
 		for (int i = 0; i < screenThis.controlList.size(); ++i) {
 			GuiSortChestButton button = (GuiSortChestButton) screenThis.controlList.get(i);
 			if (!button.isHovered(x, y)) continue;
-			GuiContainerAccessor containerAccessorThis = (GuiContainerAccessor) this;
-			containerAccessorThis.getGuiTooltip().render(button.getTooltipText(), x, y, 8, -8);
+			guiTooltip.render(button.getTooltipText(), x, y, 8, -8);
 		}
 	}
 }

@@ -11,6 +11,8 @@ public class GameSettingsMixin implements ISortChestSettings {
 	@Unique
 	public KeyBinding keySort = new KeyBinding("sortchest.sort", 0x1F);
 	@Unique
+	public KeyBinding keyRefill = new KeyBinding("sortchest.refill", 0x13);
+	@Unique
 	public KeyBinding keyFill = new KeyBinding("sortchest.fill", 0x21);
 	@Unique
 	public KeyBinding keyDump = new KeyBinding("sortchest.dump", 0x20);
@@ -18,6 +20,11 @@ public class GameSettingsMixin implements ISortChestSettings {
 	@Override
 	public KeyBinding bta_rootenginear_mods$getKeySort() {
 		return this.keySort;
+	}
+
+	@Override
+	public KeyBinding bta_rootenginear_mods$getKeyRefill() {
+		return this.keyRefill;
 	}
 
 	@Override

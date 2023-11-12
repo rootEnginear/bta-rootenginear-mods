@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.util.List;
 
-@Mixin(value = {GuiOptionsPageControls.class})
+@Mixin(value = {GuiOptionsPageControls.class}, remap = false)
 public interface GuiOptionsPageControlsAccessor {
 	@Accessor("keyBindings")
 	void setKeyBindings(List<KeyBinding[]> keyBindings);
