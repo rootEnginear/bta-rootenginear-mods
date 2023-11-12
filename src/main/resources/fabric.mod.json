@@ -3,7 +3,7 @@
 	"id": "sortchest",
 	"version": "${version}",
 	"name": "Sort Chest",
-	"description": "Organize your chests instantly with a single keystroke",
+	"description": "Organize your chests instantly with a single click",
 	"authors": [
 		"rootEnginear"
 	],
