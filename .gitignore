@@ -5,3 +5,4 @@ out/
 run/
 run-server/
 local/
+src/main/resources/livemap/local/

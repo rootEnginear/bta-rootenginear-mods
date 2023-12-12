@@ -1,0 +1,138 @@
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  canvas {
+    image-rendering: optimizeSpeed;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+  }
+</style>
+
+<canvas id="map" width="1000" height="1000"></canvas>
+
+<!-- JSON.stringify(a.replace(/\n/g, " ").replace(/\s+/g," ").split(" ")) -->
+
+<script src="./colors.js"></script>
+<script type="module" defer>
+  import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+  const canvas = document.getElementById("map");
+  const ctx = canvas.getContext("2d");
+
+  const updateCanvasSize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  updateCanvasSize();
+
+  ctx.imageSmoothingEnabled = false;
+  ctx.mozImageSmoothingEnabled = false;
+  ctx.webkitImageSmoothingEnabled = false;
+
+  let transform = d3.zoomIdentity
+
+  d3.select(canvas).call(d3.zoom().scaleExtent([1, 4]).on('zoom', (t) => {
+    transform = t.transform
+  }))
+
+  const getChunk = async (x, z) => {
+    try {
+      const resp = await fetch(
+        "./chunks/" + x + "." + z
+      );
+      const arrdat = await resp.arrayBuffer();
+      return new Uint16Array(arrdat);
+    } catch {
+      console.log(x, z, "not found");
+    }
+  }
+
+  let players = {}
+
+  const init = async () => {
+    const playerResp = await fetch('./players.json');
+    const playerJson = await playerResp.json();
+
+    for (const username in playerJson) {
+      if (players[username]) return;
+
+      const image = new Image();
+      image.src = `https://crafatar.com/avatars/${playerJson[username].uuid}?size=16&overlay=hat`
+
+      players[username] = {
+        x: playerJson[username].x, z: playerJson[username].z, image
+      }
+    }
+
+    const chunkResp = await fetch("./chunks.json");
+    const chunkList = await chunkResp.json();
+
+    // find mix/max x and z
+    let minX = Infinity;
+    let minZ = Infinity;
+    let maxX = -Infinity;
+    let maxZ = -Infinity;
+    const chunkCoor = chunkList.map(chunkPairStr => {
+      const [x, z] = chunkPairStr.split('.').map(e => +e)
+
+      // while we're here, might as well collect min/max
+      if (minX > x) minX = x;
+      if (minZ > z) minZ = z;
+      if (maxX < x) maxX = x;
+      if (maxZ < z) maxZ = z;
+
+      return [x, z];
+    })
+
+    const offWidth = (maxX - minX) * 16;
+    const offHeight = (maxZ - minZ) * 16
+
+    const offscreen = new OffscreenCanvas(offWidth, offHeight)
+    const offCtx = offscreen.getContext('2d')
+
+    for (const [x, z] of chunkCoor) {
+      getChunk(x, z).then(chunk => {
+        chunk.forEach((data, idx) => {
+          const id = data & 0x3ff;
+          const metadata = (data >> 10) & 0xf;
+
+          if (id === 0) return;
+
+          const color = COLORS[id] ?? "#d67fff";
+
+          offCtx.fillStyle = color;
+          offCtx.fillRect((x * 16) + (idx % 16) - minX * 16, (z * 16) + Math.floor(idx / 16) - minZ * 16, 1, 1);
+        })
+      })
+    }
+
+    const redrawMap = async () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(offscreen, transform.x, transform.y, offWidth * transform.k, offHeight * transform.k);
+      for (const username in players) {
+        const player = players[username]
+        ctx.drawImage(player.image, player.x - minX * 16 + transform.x - 8, player.z - minZ * 16 + transform.y - 8);
+      }
+    }
+
+    setInterval(() => {
+      redrawMap()
+    }, 1000 / 60)
+
+    window.addEventListener("resize", updateCanvasSize)
+  }
+
+  init();
+
+  /*
+    How to get Minecraft Skin:
+    1. get https://api.mojang.com/users/profiles/minecraft/{username} -> .id
+    2. https://crafatar.com/avatars/{id}?size=16&overlay=hat
+  */
+</script>
