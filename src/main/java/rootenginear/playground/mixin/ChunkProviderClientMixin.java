@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rootenginear.playground.ChunkProcessor;
+import rootenginear.playground.Playground;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public abstract class ChunkProviderClientMixin {
 		ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(chunkX, chunkZ);
 		Chunk chunk = (Chunk) this.chunkMapping.get(chunkcoordintpair);
 		if (dumpedChunks.contains(chunkcoordintpair) || chunk == null || !chunk.receivedFromServer) return;
-		System.out.println("Dumping " + chunkX + " " + chunkZ);
+		Playground.LOGGER.info("Dumping " + chunkX + "," + chunkZ);
 		try {
 			dumpedChunks.add(chunkcoordintpair);
 			ChunkProcessor.readAndDumpChunkData(chunkX, chunkZ, chunk);

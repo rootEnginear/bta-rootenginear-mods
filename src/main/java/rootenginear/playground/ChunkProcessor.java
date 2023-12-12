@@ -11,8 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ChunkProcessor {
-	public static void readAndDumpChunkData(int targetChunkX, int targetChunkZ, Chunk chunk) throws IOException {
-		try (FileOutputStream chunkData = new FileOutputStream(String.format("livemap/chunks/%d.%d", targetChunkX, targetChunkZ))) {
+	public static void readAndDumpChunkData(int chunkX, int chunkZ, Chunk chunk) throws IOException {
+		try (FileOutputStream chunkData = new FileOutputStream(String.format("livemap/chunks/%d.%d", chunkX, chunkZ))) {
 			for (int shiftZ = 0; shiftZ < 16; shiftZ++) {
 				for (int shiftX = 0; shiftX < 16; shiftX++) {
 					short blockData = 0;

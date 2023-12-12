@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import rootenginear.playground.ChunkProcessor;
+import rootenginear.playground.Playground;
 
 import java.io.FileWriter;
 
@@ -50,13 +51,12 @@ public class MinecraftServerMixin {
 						int targetChunkZ = chunkZ + chunkShiftZ;
 						Chunk chunk = overworld.chunkProviderServer.provideChunk(targetChunkX, targetChunkZ);
 						ChunkProcessor.readAndDumpChunkData(targetChunkX, targetChunkZ, chunk);
-						System.out.println("Chunk " + targetChunkX + ", " + targetChunkZ + " dumped!");
+						Playground.LOGGER.info("Chunk " + targetChunkX + "," + targetChunkZ + " dumped!");
 					}
 				}
 			}
 			ChunkProcessor.updateChunkFile();
-		} catch (Exception lol) {
-			System.out.println(lol.toString());
+		} catch (Exception ignored) {
 		}
 	}
 
