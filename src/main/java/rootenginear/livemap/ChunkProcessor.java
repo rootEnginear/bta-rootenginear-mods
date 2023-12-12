@@ -1,4 +1,4 @@
-package rootenginear.playground;
+package rootenginear.livemap;
 
 import net.minecraft.core.world.chunk.Chunk;
 

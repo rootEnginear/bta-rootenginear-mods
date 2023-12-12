@@ -1,29 +1,29 @@
 {
-  "schemaVersion": 1,
-  "id": "playground",
-  "version": "${version}",
-  "name": "Playground",
-  "description": "This is the beginning of awesome mods!",
-  "authors": [
-    "rootEnginear"
-  ],
+	"schemaVersion": 1,
+	"id": "livemap",
+	"version": "${version}",
+	"name": "Livemap",
+	"description": "Online Livemap for your server",
+	"authors": [
+		"rootEnginear"
+	],
 	"icon": "icon.png",
-  "contact": {
-    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
-  },
-  "license": "CC0-1.0",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-			"rootenginear.playground.Playground"
-    ]
-  },
-  "mixins": [
-      "playground.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.13.3"
-  }
+	"contact": {
+		"homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
+		"sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
+		"issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
+	},
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"rootenginear.livemap.Livemap"
+		]
+	},
+	"mixins": [
+		"livemap.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.13.3"
+	}
 }

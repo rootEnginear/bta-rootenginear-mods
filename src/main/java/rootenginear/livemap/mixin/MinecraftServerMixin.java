@@ -1,4 +1,4 @@
-package rootenginear.playground.mixin;
+package rootenginear.livemap.mixin;
 
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.world.chunk.Chunk;
@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import rootenginear.playground.ChunkProcessor;
-import rootenginear.playground.Playground;
+import rootenginear.livemap.ChunkProcessor;
+import rootenginear.livemap.Livemap;
 
 import java.io.FileWriter;
 
@@ -51,7 +51,7 @@ public class MinecraftServerMixin {
 						int targetChunkZ = chunkZ + chunkShiftZ;
 						Chunk chunk = overworld.chunkProviderServer.provideChunk(targetChunkX, targetChunkZ);
 						ChunkProcessor.readAndDumpChunkData(targetChunkX, targetChunkZ, chunk);
-						Playground.LOGGER.info("Chunk " + targetChunkX + "," + targetChunkZ + " dumped!");
+						Livemap.LOGGER.info("Chunk " + targetChunkX + "," + targetChunkZ + " dumped!");
 					}
 				}
 			}

@@ -1,4 +1,4 @@
-package rootenginear.playground.mixin;
+package rootenginear.livemap.mixin;
 
 import net.minecraft.client.world.chunk.provider.ChunkProviderClient;
 import net.minecraft.core.world.chunk.Chunk;
@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rootenginear.playground.ChunkProcessor;
-import rootenginear.playground.Playground;
+import rootenginear.livemap.ChunkProcessor;
+import rootenginear.livemap.Livemap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public abstract class ChunkProviderClientMixin {
 		ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(chunkX, chunkZ);
 		Chunk chunk = (Chunk) this.chunkMapping.get(chunkcoordintpair);
 		if (dumpedChunks.contains(chunkcoordintpair) || chunk == null || !chunk.receivedFromServer) return;
-		Playground.LOGGER.info("Dumping " + chunkX + "," + chunkZ);
+		Livemap.LOGGER.info("Dumping " + chunkX + "," + chunkZ);
 		try {
 			dumpedChunks.add(chunkcoordintpair);
 			ChunkProcessor.readAndDumpChunkData(chunkX, chunkZ, chunk);
