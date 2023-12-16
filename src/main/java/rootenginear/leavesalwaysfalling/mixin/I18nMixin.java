@@ -95,7 +95,7 @@ public abstract class I18nMixin {
 	public void addHalplibeModLangFiles(String languageCode, boolean save, CallbackInfo ci) {
 		Properties entries = ((LanguageAccessor) currentLanguage).getEntries();
 		Language defaultLanguage = Language.Default.INSTANCE;
-		Properties defaultEntries = ((LanguageAccessor) defaultLanguage).getEntries(); //if you see a ClassCastException warning here, it is wrong, nothing happens
+		Properties defaultEntries = ((LanguageAccessor) defaultLanguage).getEntries(); // if you see a ClassCastException warning here, it is wrong, nothing happens
 		String defaultLangId = defaultLanguage.getId();
 		String currentLangId = currentLanguage.getId();
 		LeavesAlwaysFalling.LOGGER.debug("Current lang: " + currentLangId);

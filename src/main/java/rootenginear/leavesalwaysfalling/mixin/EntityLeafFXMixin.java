@@ -1,8 +1,8 @@
 package rootenginear.leavesalwaysfalling.mixin;
 
+import net.minecraft.client.entity.fx.EntityLeafFX;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLeavesRetro;
-import net.minecraft.core.entity.fx.EntityLeafFX;
 import net.minecraft.core.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

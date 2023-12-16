@@ -1,6 +1,6 @@
 package rootenginear.leavesalwaysfalling.mixin.accessors;
 
-import net.minecraft.core.entity.fx.EntityFX;
+import net.minecraft.client.entity.fx.EntityFX;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
