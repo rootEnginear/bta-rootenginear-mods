@@ -1,26 +1,30 @@
 {
-  "schemaVersion": 1,
-  "id": "craftablechainmailarmor",
-  "version": "${version}",
-  "name": "Craftable Chainmail Armor",
-  "description": "Craft chainmail armors from chainlinks.",
-  "authors": [
-    "rootEnginear"
-  ],
+	"schemaVersion": 1,
+	"id": "craftablechainmailarmor",
+	"version": "${version}",
+	"name": "Craftable Chainmail Armor",
+	"description": "Craft chainmail armors from chainlinks.",
+	"authors": [
+		"rootEnginear"
+	],
 	"icon": "icon.png",
-  "contact": {
-    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/craftable-chainmail-armor",
-    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/craftable-chainmail-armor",
-    "issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
-  },
-  "license": "CC0-1.0",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
+	"contact": {
+		"homepage": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/craftable-chainmail-armor",
+		"sources": "https://github.com/rootEnginear/bta-rootenginear-mods/tree/craftable-chainmail-armor",
+		"issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
+	},
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
 			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
-    ]
-  },
-  "depends": {
-    "fabricloader": ">=0.13.3"
-  }
+		],
+		"recipesReady": [
+			"rootenginear.craftablechainmailarmor.recipe.ChainmailRecipes"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.13.3",
+		"halplibe": ">=3.0.2"
+	}
 }

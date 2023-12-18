@@ -1,0 +1,100 @@
+[
+  {
+    "name": "chainmail:workbench/chainmail_helmet",
+    "type": "minecraft:crafting/shaped",
+    "pattern": [
+      "XXX",
+      "X X"
+    ],
+    "symbols": [
+      {
+        "symbol": "X",
+        "stack": {
+          "id": 16503,
+          "amount": 1,
+          "meta": 0
+        }
+      }
+    ],
+    "result": {
+      "id": 16430,
+      "amount": 1,
+      "meta": 217
+    },
+    "consumeContainers": true
+  },
+  {
+    "name": "chainmail:workbench/chainmail_chestplate",
+    "type": "minecraft:crafting/shaped",
+    "pattern": [
+      "X X",
+      "XXX",
+      "XXX"
+    ],
+    "symbols": [
+      {
+        "symbol": "X",
+        "stack": {
+          "id": 16503,
+          "amount": 1,
+          "meta": 0
+        }
+      }
+    ],
+    "result": {
+      "id": 16431,
+      "amount": 1,
+      "meta": 239
+    },
+    "consumeContainers": true
+  },
+  {
+    "name": "chainmail:workbench/chainmail_leggings",
+    "type": "minecraft:crafting/shaped",
+    "pattern": [
+      "XXX",
+      "X X",
+      "X X"
+    ],
+    "symbols": [
+      {
+        "symbol": "X",
+        "stack": {
+          "id": 16503,
+          "amount": 1,
+          "meta": 0
+        }
+      }
+    ],
+    "result": {
+      "id": 16432,
+      "amount": 1,
+      "meta": 231
+    },
+    "consumeContainers": true
+  },
+  {
+    "name": "chainmail:workbench/chainmail_boots",
+    "type": "minecraft:crafting/shaped",
+    "pattern": [
+      "X X",
+      "X X"
+    ],
+    "symbols": [
+      {
+        "symbol": "X",
+        "stack": {
+          "id": 16503,
+          "amount": 1,
+          "meta": 0
+        }
+      }
+    ],
+    "result": {
+      "id": 16433,
+      "amount": 1,
+      "meta": 224
+    },
+    "consumeContainers": true
+  }
+]
