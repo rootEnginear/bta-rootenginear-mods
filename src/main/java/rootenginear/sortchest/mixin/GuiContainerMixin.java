@@ -134,9 +134,9 @@ public class GuiContainerMixin {
 
 	@Unique
 	private static void swap(PlayerController playerController, EntityPlayer entityPlayer, int windowId, int x, int i) {
-		playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{x, 0}, entityPlayer);
-		playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{i, 0}, entityPlayer);
-		playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{x, 0}, entityPlayer);
+		playerController.handleInventoryMouseClick(windowId, InventoryAction.CLICK_LEFT, new int[]{x, 0}, entityPlayer);
+		playerController.handleInventoryMouseClick(windowId, InventoryAction.CLICK_LEFT, new int[]{i, 0}, entityPlayer);
+		playerController.handleInventoryMouseClick(windowId, InventoryAction.CLICK_LEFT, new int[]{x, 0}, entityPlayer);
 	}
 
 	@Unique
@@ -156,30 +156,30 @@ public class GuiContainerMixin {
 			int nextSlot = invData.indexOf(itemData);
 			if (nextSlot == -1) continue;
 
-			playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{firstSlotIndex, 0}, entityPlayer);
+			playerController.handleInventoryMouseClick(windowId, InventoryAction.CLICK_LEFT, new int[]{firstSlotIndex, 0}, entityPlayer);
 
 			do {
-				playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{nextSlot, 0}, entityPlayer);
-				playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{nextSlot, 0}, entityPlayer);
+				playerController.handleInventoryMouseClick(windowId, InventoryAction.CLICK_LEFT, new int[]{nextSlot, 0}, entityPlayer);
+				playerController.handleInventoryMouseClick(windowId, InventoryAction.CLICK_LEFT, new int[]{nextSlot, 0}, entityPlayer);
 				invData.set(nextSlot, null);
 			} while ((nextSlot = invData.indexOf(itemData)) != -1);
 
-			playerController.doInventoryAction(windowId, InventoryAction.CLICK_LEFT, new int[]{firstSlotIndex, 0}, entityPlayer);
+			playerController.handleInventoryMouseClick(windowId, InventoryAction.CLICK_LEFT, new int[]{firstSlotIndex, 0}, entityPlayer);
 		}
 	}
 
 	@Unique
 	private void dumpItemFromChest(PlayerController playerController, EntityPlayer entityPlayer, int windowId) {
-		playerController.doInventoryAction(windowId, InventoryAction.MOVE_ALL, new int[]{0, 0}, entityPlayer);
+		playerController.handleInventoryMouseClick(windowId, InventoryAction.MOVE_ALL, new int[]{0, 0}, entityPlayer);
 	}
 
 	@Unique
 	private void dumpItemToChest(PlayerController playerController, EntityPlayer entityPlayer, int windowId, int countInvSlots) {
 		// Dump inventory (not hotbar) content
-		playerController.doInventoryAction(windowId, InventoryAction.MOVE_ALL, new int[]{countInvSlots, 0}, entityPlayer);
+		playerController.handleInventoryMouseClick(windowId, InventoryAction.MOVE_ALL, new int[]{countInvSlots, 0}, entityPlayer);
 
 		// Dump hotbar content
-		playerController.doInventoryAction(windowId, InventoryAction.MOVE_ALL, new int[]{countInvSlots + (9 * 3), 0}, entityPlayer);
+		playerController.handleInventoryMouseClick(windowId, InventoryAction.MOVE_ALL, new int[]{countInvSlots + (9 * 3), 0}, entityPlayer);
 	}
 
 	@Unique
@@ -199,12 +199,12 @@ public class GuiContainerMixin {
 			String invItemStr = invItem.itemID + ":" + invItem.getMetadata();
 			if (!chestItems.contains(invItemStr)) continue;
 
-			playerController.doInventoryAction(windowId, InventoryAction.MOVE_SIMILAR, new int[]{i, 0}, entityPlayer);
+			playerController.handleInventoryMouseClick(windowId, InventoryAction.MOVE_SIMILAR, new int[]{i, 0}, entityPlayer);
 			chestItems.remove(invItemStr);
 		}
 	}
 
-	@Inject(method = "initGui", at = @At("TAIL"))
+	@Inject(method = "init", at = @At("TAIL"))
 	private void addChestButtons(CallbackInfo ci) {
 		if (Utils.isNotChest(this)) return;
 
