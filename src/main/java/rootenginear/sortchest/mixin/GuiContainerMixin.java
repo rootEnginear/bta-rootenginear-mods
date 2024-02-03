@@ -210,8 +210,8 @@ public class GuiContainerMixin {
 
 		GuiScreen screenThis = (GuiScreen) (Object) this;
 
-		int centerX = (screenThis.width - xSize) / 2;
-		int centerY = (screenThis.height - ySize) / 2;
+		int centerX = (screenThis.width) / 2;
+		int centerY = (screenThis.height) / 2;
 
 		ISortChestSettings gameSettings = ((ISortChestSettings) Minecraft.getMinecraft(Minecraft.class).gameSettings);
 		String keySort = gameSettings.bta_rootenginear_mods$getKeySort().getKeyName();
@@ -221,25 +221,35 @@ public class GuiContainerMixin {
 
 		I18n i18n = I18n.getInstance();
 
+
+
+		int textPadding = 6;
+		int buttonWidth = 12;
+		int buttonHeight = 12;
+		int buttonXSeparator = 2;
+		int buttonStartXPos = centerX + (xSize / 2) - 20;
+		int buttonYSeparator = 68;
+		int buttonStartYPos = centerY - 13;
+
 		screenThis.controlList.clear();
 		screenThis.controlList.add(
-			new GuiSortChestButton(0, centerX + xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵", 3,
+			new GuiSortChestButton(0, buttonStartXPos - buttonWidth - buttonXSeparator, buttonStartYPos-buttonYSeparator, buttonWidth, buttonHeight, "⇵", textPadding,
 				i18n.translateKey("sortchest.sort") + " [" + keySort + "]"
 			)
 		);
 		screenThis.controlList.add(
-			new GuiSortChestButton(1, centerX + xSize - 8 - 12, centerY + 4, 12, 12, "∑", 3,
+			new GuiSortChestButton(1, buttonStartXPos, buttonStartYPos-buttonYSeparator, buttonWidth, buttonHeight, "∑", textPadding,
 				i18n.translateKey("sortchest.refill") + " [" + keyRefill + "]"
 			)
 		);
 
 		screenThis.controlList.add(
-			new GuiSortChestButton(2, centerX + xSize - 8 - 12 - 12 - 2, centerY + ySize - 96 - 1, 12, 12, "⊼", 3,
+			new GuiSortChestButton(2, buttonStartXPos  - buttonWidth - buttonXSeparator, buttonStartYPos, buttonWidth, buttonHeight, "⊼", textPadding,
 				i18n.translateKey("sortchest.fill") + " [" + keyFill + "]"
 			)
 		);
 		screenThis.controlList.add(
-			new GuiSortChestButton(3, centerX + xSize - 8 - 12, centerY + ySize - 96 - 1, 12, 12, "⊻", 3,
+			new GuiSortChestButton(3, buttonStartXPos , buttonStartYPos, buttonWidth, buttonHeight, "⊻", textPadding,
 				i18n.translateKey("sortchest.dump") + " [" + keyDump + "]"
 			)
 		);
