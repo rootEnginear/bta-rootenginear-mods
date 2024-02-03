@@ -8,20 +8,16 @@ import rootenginear.sortchest.interfaces.ISortChestSettings;
 
 @Mixin(value = GameSettings.class, remap = false)
 public class GameSettingsMixin implements ISortChestSettings {
-	@Unique
-	public KeyBinding keySort = new KeyBinding("sortchest.sort", 0x1F);
-	@Unique
-	public KeyBinding keyRefill = new KeyBinding("sortchest.refill", 0x13);
-	@Unique
-	public KeyBinding keyFill = new KeyBinding("sortchest.fill", 0x21);
-	@Unique
-	public KeyBinding keyDump = new KeyBinding("sortchest.dump", 0x20);
+
+	public KeyBinding keyRefill = new KeyBinding("sortchest.refill").bindKeyboard(0x13); //R
+	public KeyBinding keyFill = new KeyBinding("sortchest.fill").bindKeyboard(0x21); //F
+	public KeyBinding keyDump = new KeyBinding("sortchest.dump").bindKeyboard(0x20); //D
+	public KeyBinding keySort = new KeyBinding("sortchest.sort").bindKeyboard( 0x1F); //S
 
 	@Override
 	public KeyBinding bta_rootenginear_mods$getKeySort() {
 		return this.keySort;
 	}
-
 	@Override
 	public KeyBinding bta_rootenginear_mods$getKeyRefill() {
 		return this.keyRefill;

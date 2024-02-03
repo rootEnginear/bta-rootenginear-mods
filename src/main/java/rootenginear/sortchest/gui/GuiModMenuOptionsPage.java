@@ -1,33 +1,46 @@
 package rootenginear.sortchest.gui;
 
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.options.GuiOptionsPageControls;
-import net.minecraft.client.option.GameSettings;
+import net.minecraft.client.gui.options.GuiOptions;
+import net.minecraft.client.gui.options.components.KeyBindingComponent;
+import net.minecraft.client.gui.options.data.OptionsPage;
+import net.minecraft.client.gui.options.data.OptionsPages;
 import rootenginear.sortchest.interfaces.ISortChestSettings;
-import rootenginear.sortchest.mixin.accessor.GuiOptionsPageControlsAccessor;
-import rootenginear.sortchest.mixin.accessor.GuiOptionsPageOptionBaseAccessor;
+import turniplabs.halplibe.helper.ModVersionHelper;
+import turniplabs.halplibe.util.ClientStartEntrypoint;
 
-import java.util.ArrayList;
+import static rootenginear.sortchest.SortChest.LOGGER;
 
-public class GuiModMenuOptionsPage extends GuiOptionsPageControls {
-	public GuiModMenuOptionsPage(GuiScreen parent, GameSettings settings) {
-		super(parent, settings);
 
-		GuiOptionsPageOptionBaseAccessor opobThis = (GuiOptionsPageOptionBaseAccessor) this;
-		opobThis.setCategoryKeys(new ArrayList<>());
-		opobThis.setOptions(new ArrayList<>());
-		opobThis.setButtons(new ArrayList<>());
+public class GuiModMenuOptionsPage implements ClientStartEntrypoint {
+	public static ISortChestSettings modSettings;
+	public static OptionsPage sortOptions;
 
-		GuiOptionsPageControlsAccessor opcThis = (GuiOptionsPageControlsAccessor) this;
-		opcThis.setKeyBindings(new ArrayList<>());
+	public static GuiOptions getOptionsScreen(GuiScreen parent){
+		return new GuiOptions(parent,  Minecraft.getMinecraft(Minecraft.class).gameSettings, sortOptions);
+	}
 
-		ISortChestSettings iSortChestSettings = (ISortChestSettings) settings;
-		this.addKeyBindingsCategory(
-			"options.category.sortchest",
-			iSortChestSettings.bta_rootenginear_mods$getKeySort(),
-			iSortChestSettings.bta_rootenginear_mods$getKeyRefill(),
-			iSortChestSettings.bta_rootenginear_mods$getKeyFill(),
-			iSortChestSettings.bta_rootenginear_mods$getKeyDump()
-		);
+	@Override
+	public void beforeClientStart() {
+
+	}
+
+	@Override
+	public void afterClientStart() {
+		modSettings = (ISortChestSettings) Minecraft.getMinecraft(Minecraft.class).gameSettings;
+		sortOptions = new OptionsPage("options.category.sortchest")
+			.withComponent(new KeyBindingComponent(modSettings.bta_rootenginear_mods$getKeyDump()))
+			.withComponent(new KeyBindingComponent(modSettings.bta_rootenginear_mods$getKeyFill()))
+			.withComponent(new KeyBindingComponent(modSettings.bta_rootenginear_mods$getKeyRefill()))
+			.withComponent(new KeyBindingComponent(modSettings.bta_rootenginear_mods$getKeySort()));
+
+
+		if(ModVersionHelper.isModPresent("modmenu")){
+			OptionsPages.register(sortOptions);
+		}
+		//OptionsPages.CONTROLS.withComponent(keybindCategory);
+
 	}
 }
