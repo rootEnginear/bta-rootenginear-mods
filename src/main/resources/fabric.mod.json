@@ -35,7 +35,7 @@
 		"halplibe": ">=3.5.2"
 	},
 	"suggests": {
-		"modmenu-bta": ">=2.0.5"
+		"modmenu": ">=2.0.5"
 	},
 	"custom": {
 		"modmenu:clientsideOnly": true
