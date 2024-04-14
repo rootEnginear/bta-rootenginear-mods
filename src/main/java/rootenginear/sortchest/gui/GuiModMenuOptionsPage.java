@@ -17,7 +17,7 @@ public class GuiModMenuOptionsPage implements ClientStartEntrypoint {
 	public static OptionsPage sortOptions;
 
 	public static GuiOptions getOptionsScreen(GuiScreen parent) {
-		return new GuiOptions(parent);
+		return new GuiOptions(parent, sortOptions);
 	}
 
 	@Override
