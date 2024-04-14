@@ -216,6 +216,7 @@ public class GuiContainerMixin {
 	@Unique
 	int buttonXSeparator = 2;
 
+	@SuppressWarnings("UnreachableCode")
 	@Inject(method = "init", at = @At("TAIL"))
 	private void addChestButtons(CallbackInfo ci) {
 		if (Utils.isNotChest(this)) return;
@@ -245,6 +246,7 @@ public class GuiContainerMixin {
 		screenThis.controlList.add(new GuiSortChestButton(3, centerX + xSize - 8 - 12, centerY + ySize - 96 - 1, buttonWidth, buttonHeight, "⊻", textPadding, i18n.translateKey("sortchest.dump") + " [" + keyDump + "]"));
 	}
 
+	@SuppressWarnings("UnreachableCode")
 	@Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lorg/lwjgl/opengl/GL11;glEnable(I)V"))
 	private void renderChestButtonTooltip(int x, int y, float renderPartialTicks, CallbackInfo ci) {
 		if (Utils.isNotChest(this)) return;
