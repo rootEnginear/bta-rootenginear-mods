@@ -30,11 +30,12 @@
 		"sortchest.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.13.3",
-		"halplibe": ">=3.2.1"
+		"minecraft": "7.1",
+		"fabricloader": ">=0.15.5",
+		"halplibe": ">=3.5.2"
 	},
 	"suggests": {
-		"modmenu": ">=2.0.0"
+		"modmenu-bta": ">=2.0.5"
 	},
 	"custom": {
 		"modmenu:clientsideOnly": true
