@@ -1,29 +1,43 @@
 {
-  "schemaVersion": 1,
-  "id": "playground",
-  "version": "${version}",
-  "name": "Playground",
-  "description": "This is the beginning of awesome mods!",
-  "authors": [
-    "rootEnginear"
-  ],
+	"schemaVersion": 1,
+	"id": "playground",
+	"version": "${version}",
+	"name": "Playground",
+	"description": "This is the beginning of awesome mods!",
+	"authors": [
+		"rootEnginear"
+	],
 	"icon": "icon.png",
-  "contact": {
-    "homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
-    "issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
-  },
-  "license": "CC0-1.0",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
+	"contact": {
+		"homepage": "https://github.com/rootEnginear/bta-rootenginear-mods",
+		"sources": "https://github.com/rootEnginear/bta-rootenginear-mods",
+		"issues": "https://github.com/rootEnginear/bta-rootenginear-mods/issues"
+	},
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
 			"rootenginear.playground.Playground"
-    ]
-  },
-  "mixins": [
-      "playground.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.13.3"
-  }
+		],
+		"beforeGameStart": [
+			"rootenginear.playground.Playground"
+		],
+		"afterGameStart": [
+			"rootenginear.playground.Playground"
+		],
+		"recipesReady": [
+			"rootenginear.playground.Playground"
+		]
+	},
+	"mixins": [
+		"playground.mixins.json"
+	],
+	"depends": {
+		"minecraft": "7.1",
+		"fabricloader": ">=0.15.5",
+		"halplibe": ">=3.5.2"
+	},
+	"suggests": {
+		"modmenu-bta": ">=2.0.5"
+	}
 }
