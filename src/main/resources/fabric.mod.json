@@ -19,6 +19,9 @@
 		"main": [
 			"rootenginear.sortchest.SortChest"
 		],
+		"afterClientStart": [
+			"rootenginear.sortchest.gui.GuiModMenuOptionsPage"
+		],
 		"modmenu": [
 			"rootenginear.sortchest.ModMenuModule"
 		]
@@ -27,7 +30,8 @@
 		"sortchest.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.13.3"
+		"fabricloader": ">=0.13.3",
+		"halplibe": ">=3.2.1"
 	},
 	"suggests": {
 		"modmenu": ">=2.0.0"

@@ -9,8 +9,6 @@
     "GuiScreenMixin",
     "I18nMixin",
     "accessor.GuiChestAccessor",
-    "accessor.GuiOptionsPageControlsAccessor",
-    "accessor.GuiOptionsPageOptionBaseAccessor",
     "accessor.LanguageAccessor"
   ],
   "injectors": {
