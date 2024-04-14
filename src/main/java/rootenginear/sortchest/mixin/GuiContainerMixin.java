@@ -204,18 +204,6 @@ public class GuiContainerMixin {
 		}
 	}
 
-	@Unique
-	int textPadding = 6;
-
-	@Unique
-	int buttonWidth = 12;
-
-	@Unique
-	int buttonHeight = 12;
-
-	@Unique
-	int buttonXSeparator = 2;
-
 	@SuppressWarnings("UnreachableCode")
 	@Inject(method = "init", at = @At("TAIL"))
 	private void addChestButtons(CallbackInfo ci) {
@@ -237,13 +225,13 @@ public class GuiContainerMixin {
 		screenThis.controlList.clear();
 
 		// Sort Btn
-		screenThis.controlList.add(new GuiSortChestButton(0, centerX + xSize - 8 - 12 - 12 - buttonXSeparator, centerY + 4, buttonWidth, buttonHeight, "⇵", textPadding, i18n.translateKey("sortchest.sort") + " [" + keySort + "]"));
+		screenThis.controlList.add(new GuiSortChestButton(0, centerX + xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵", 6, i18n.translateKey("sortchest.sort") + " [" + keySort + "]"));
 		// Refill Btn
-		screenThis.controlList.add(new GuiSortChestButton(1, centerX + xSize - 8 - 12, centerY + 4, buttonWidth, buttonHeight, "∑", textPadding, i18n.translateKey("sortchest.refill") + " [" + keyRefill + "]"));
+		screenThis.controlList.add(new GuiSortChestButton(1, centerX + xSize - 8 - 12, centerY + 4, 12, 12, "∑", 6, i18n.translateKey("sortchest.refill") + " [" + keyRefill + "]"));
 		// Fill Btn
-		screenThis.controlList.add(new GuiSortChestButton(2, centerX + xSize - 8 - 12 - 12 - buttonXSeparator, centerY + ySize - 96 - 1, buttonWidth, buttonHeight, "⊼", textPadding, i18n.translateKey("sortchest.fill") + " [" + keyFill + "]"));
+		screenThis.controlList.add(new GuiSortChestButton(2, centerX + xSize - 8 - 12 - 12 - 2, centerY + ySize - 96 - 1, 12, 12, "⊼", 6, i18n.translateKey("sortchest.fill") + " [" + keyFill + "]"));
 		// Dump Btn
-		screenThis.controlList.add(new GuiSortChestButton(3, centerX + xSize - 8 - 12, centerY + ySize - 96 - 1, buttonWidth, buttonHeight, "⊻", textPadding, i18n.translateKey("sortchest.dump") + " [" + keyDump + "]"));
+		screenThis.controlList.add(new GuiSortChestButton(3, centerX + xSize - 8 - 12, centerY + ySize - 96 - 1, 12, 12, "⊻", 6, i18n.translateKey("sortchest.dump") + " [" + keyDump + "]"));
 	}
 
 	@SuppressWarnings("UnreachableCode")
