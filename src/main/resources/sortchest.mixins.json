@@ -7,9 +7,7 @@
     "GameSettingsMixin",
     "GuiContainerMixin",
     "GuiScreenMixin",
-    "I18nMixin",
-    "accessor.GuiChestAccessor",
-    "accessor.LanguageAccessor"
+    "accessor.GuiChestAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
