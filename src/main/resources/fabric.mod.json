@@ -19,6 +19,9 @@
 		"main": [
 			"rootenginear.leavesalwaysfalling.LeavesAlwaysFalling"
 		],
+		"afterClientStart": [
+			"rootenginear.leavesalwaysfalling.gui.GuiOptionsPageLeaves"
+		],
 		"modmenu": [
 			"rootenginear.leavesalwaysfalling.ModMenuModule"
 		]
