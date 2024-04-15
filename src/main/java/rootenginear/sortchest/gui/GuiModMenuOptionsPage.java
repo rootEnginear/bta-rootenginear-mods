@@ -9,7 +9,6 @@ import net.minecraft.client.gui.options.data.OptionsPages;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.item.ItemStack;
 import rootenginear.sortchest.interfaces.ISortChestSettings;
-import turniplabs.halplibe.helper.ModVersionHelper;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 
 public class GuiModMenuOptionsPage implements ClientStartEntrypoint {
@@ -34,8 +33,6 @@ public class GuiModMenuOptionsPage implements ClientStartEntrypoint {
 			.withComponent(new KeyBindingComponent(modSettings.bta_rootenginear_mods$getKeyRefill()))
 			.withComponent(new KeyBindingComponent(modSettings.bta_rootenginear_mods$getKeySort()));
 
-		if (ModVersionHelper.isModPresent("modmenu")) {
-			OptionsPages.register(sortOptions);
-		}
+		OptionsPages.register(sortOptions);
 	}
 }
