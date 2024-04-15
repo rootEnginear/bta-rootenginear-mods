@@ -5,7 +5,8 @@
 This is the beginning of awesome mods!
 
 > **Important**
-> Required [Babric](https://github.com/Turnip-Labs/babric-instance-repo/releases) to run the mod.
+> - Required [Babric](https://github.com/Turnip-Labs/babric-instance-repo/releases) to run the mod.
+> - Required [HalpLibe](https://github.com/Turnip-Labs/bta-halplibe/releases) in BTA version 7.1 and later.
 
 ## Features
 
