@@ -2,7 +2,7 @@
 
 # Sort Chest
 
-Organize your chests instantly with a single click
+Organize your chest instantly with a single click
 
 This mod added several buttons in chest GUI.
 
@@ -33,3 +33,7 @@ mod will emulate mouse clicks rather than directly changing the inventory data.
 
 Items are sorted by their item ID (ascending), followed by its metadata (like wool color code, ascending), and finally
 by its quantity (descending).
+
+## Contributors
+
+Kudos to **ressidell** and **andreiqwer** for helping me migrate this mod to BTA v7.1!
