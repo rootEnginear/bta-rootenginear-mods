@@ -19,12 +19,22 @@
 		"main": [
 			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
 		],
+		"beforeGameStart": [
+			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
+		],
+		"afterGameStart": [
+			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
+		],
 		"recipesReady": [
 			"rootenginear.craftablechainmailarmor.recipe.ChainmailRecipes"
 		]
 	},
 	"depends": {
-		"fabricloader": ">=0.13.3",
-		"halplibe": ">=3.0.2"
+		"minecraft": "7.1",
+		"fabricloader": ">=0.15.5",
+		"halplibe": ">=3.5.2"
+	},
+	"suggests": {
+		"modmenu": ">=2.0.5"
 	}
 }
