@@ -18,6 +18,6 @@ public class ChainmailRecipes implements RecipeEntrypoint {
 	public void onRecipesReady() {
 		CHAINMAILMOD.register("workbench", WORKBENCH);
 		Registries.RECIPES.register("chainmail", this.CHAINMAILMOD);
-		DataLoader.loadRecipes("/assets/craftablechainmailarmor/recipe/workbench.json");
+		DataLoader.loadRecipesFromFile("/assets/craftablechainmailarmor/recipe/workbench.json");
 	}
 }

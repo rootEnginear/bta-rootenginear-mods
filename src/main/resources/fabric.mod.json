@@ -19,12 +19,6 @@
 		"main": [
 			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
 		],
-		"beforeGameStart": [
-			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
-		],
-		"afterGameStart": [
-			"rootenginear.craftablechainmailarmor.CraftableChainmailArmor"
-		],
 		"recipesReady": [
 			"rootenginear.craftablechainmailarmor.recipe.ChainmailRecipes"
 		]

@@ -10,14 +10,14 @@
       {
         "symbol": "X",
         "stack": {
-          "id": 16503,
+          "key": "item.chainlink",
           "amount": 1,
           "meta": 0
         }
       }
     ],
     "result": {
-      "id": 16430,
+      "key": "item.armor.helmet.chainmail",
       "amount": 1,
       "meta": 217
     },
@@ -35,14 +35,14 @@
       {
         "symbol": "X",
         "stack": {
-          "id": 16503,
+          "key": "item.chainlink",
           "amount": 1,
           "meta": 0
         }
       }
     ],
     "result": {
-      "id": 16431,
+      "key": "item.armor.chestplate.chainmail",
       "amount": 1,
       "meta": 239
     },
@@ -60,14 +60,14 @@
       {
         "symbol": "X",
         "stack": {
-          "id": 16503,
+          "key": "item.chainlink",
           "amount": 1,
           "meta": 0
         }
       }
     ],
     "result": {
-      "id": 16432,
+      "key": "item.armor.leggings.chainmail",
       "amount": 1,
       "meta": 231
     },
@@ -84,14 +84,14 @@
       {
         "symbol": "X",
         "stack": {
-          "id": 16503,
+          "key": "item.chainlink",
           "amount": 1,
           "meta": 0
         }
       }
     ],
     "result": {
-      "id": 16433,
+      "key": "item.armor.boots.chainmail",
       "amount": 1,
       "meta": 224
     },
