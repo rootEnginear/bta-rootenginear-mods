@@ -34,7 +34,7 @@
 		"sortchest.mixins.json"
 	],
 	"depends": {
-		"minecraft": "7.1",
+		"minecraft": "~7.2-beta.2",
 		"fabricloader": ">=0.15.5",
 		"halplibe": ">=3.5.2"
 	},
