@@ -36,4 +36,5 @@ by its quantity (descending).
 
 ## Contributors
 
-Kudos to **ressidell** and **andreiqwer** for helping me migrate this mod to BTA v7.1!
+- **ressidell** and **andreiqwer** for helping me migrate this mod to BTA v7.1!
+- **Bigjango13** for making this mod compatible with Astoria's Iron Chests and migrating this mod to BTA v7.2-pre2!

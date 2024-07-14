@@ -6,7 +6,7 @@
   "client": [
     "GameSettingsMixin",
     "GuiContainerMixin",
-    "GuiScreenMixin",
+    "GuiScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
