@@ -7,7 +7,6 @@
     "GameSettingsMixin",
     "GuiContainerMixin",
     "GuiScreenMixin",
-    "accessor.GuiChestAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

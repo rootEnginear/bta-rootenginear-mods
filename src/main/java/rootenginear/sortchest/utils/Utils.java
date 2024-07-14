@@ -4,6 +4,7 @@ import net.minecraft.client.gui.GuiChest;
 
 public class Utils {
 	public static boolean isNotChest(Object object) {
-		return !(object instanceof GuiChest);
+	    String name = object.getClass().getSimpleName();
+		return !(object instanceof GuiChest) && !name.equals("ContainerWideChest") && !name.equals("GuiDiamondChest") && !name.equals("GuiIronChest");
 	}
 }

@@ -19,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import rootenginear.sortchest.gui.GuiSortChestButton;
 import rootenginear.sortchest.interfaces.ISortChestSettings;
-import rootenginear.sortchest.mixin.accessor.GuiChestAccessor;
 import rootenginear.sortchest.utils.Utils;
 
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class GuiContainerMixin {
 			return;
 		}
 
-		int countInvSlots = ((GuiChestAccessor) this).getInventoryRows() * 9;
+		int countInvSlots = this.inventorySlots.inventorySlots.size() - 36;
 
 		if (key == keyFill) {
 			dumpItemToChest(playerController, entityPlayer, windowId, countInvSlots);
