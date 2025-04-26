@@ -11,7 +11,7 @@ public class LeavesAlwaysFalling implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static int getLeavesRandomBound() {
-		return ((ILeavesSettings) Minecraft.getMinecraft(Minecraft.class).gameSettings).bta_rootenginear_mods$getFrequency().value;
+		return ((ILeavesSettings) Minecraft.getMinecraft().gameSettings).bta_rootenginear_mods$getFrequency().value;
 	}
 
 	@Override

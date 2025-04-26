@@ -1,7 +1,7 @@
 package rootenginear.leavesalwaysfalling.interfaces;
 
-import net.minecraft.client.option.RangeOption;
+import net.minecraft.client.option.OptionRange;
 
 public interface ILeavesSettings {
-	RangeOption bta_rootenginear_mods$getFrequency();
+    OptionRange bta_rootenginear_mods$getFrequency();
 }

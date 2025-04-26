@@ -2,7 +2,7 @@ package rootenginear.leavesalwaysfalling.mixin;
 
 import net.minecraft.client.option.GameSettings;
 import net.minecraft.client.option.Option;
-import net.minecraft.client.option.RangeOption;
+import net.minecraft.client.option.OptionRange;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +16,7 @@ public class GameSettingsMixin implements ILeavesSettings {
 	private final GameSettings self = (GameSettings) (Object) this;
 
 	@Unique
-	public RangeOption leavesFrequency = new RangeOption(self, "leavesalwaysfalling.frequency", 3, 101);
+	public OptionRange leavesFrequency = new OptionRange(self, "leavesalwaysfalling.frequency", 3, 0, 100);
 
 	@Inject(method = "getDisplayString", at = @At("HEAD"), cancellable = true)
 	private void customDisplayString(Option<?> option, CallbackInfoReturnable<String> cir) {
@@ -35,7 +35,7 @@ public class GameSettingsMixin implements ILeavesSettings {
 	}
 
 	@Unique
-	public RangeOption bta_rootenginear_mods$getFrequency() {
+	public OptionRange bta_rootenginear_mods$getFrequency() {
 		return leavesFrequency;
 	}
 }

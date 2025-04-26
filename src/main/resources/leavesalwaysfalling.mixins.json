@@ -4,11 +4,11 @@
   "package": "rootenginear.leavesalwaysfalling.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "EntityLeafFXMixin",
     "GameSettingsMixin",
     "GenericLeavesParticleMixin",
+    "ParticleLeafMixin",
     "SeasonalLeavesParticleMixin",
-    "accessors.EntityFXAccessor"
+    "accessors.ParticleAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
