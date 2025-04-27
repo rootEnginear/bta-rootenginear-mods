@@ -35,12 +35,12 @@
 		"sortchest.mixins.json"
 	],
 	"depends": {
-		"minecraft": "~7.2-beta.2",
+		"minecraft": "~7.3",
 		"fabricloader": ">=0.15.5",
-		"halplibe": ">=3.5.2"
+		"halplibe": ">=5.0.0"
 	},
 	"suggests": {
-		"modmenu": ">=2.0.5"
+		"modmenu": ">=3.0.0"
 	},
 	"custom": {
 		"modmenu:clientsideOnly": true

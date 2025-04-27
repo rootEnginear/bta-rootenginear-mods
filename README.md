@@ -6,14 +6,15 @@ Organize your chest instantly with a single click
 
 This mod added several buttons in chest GUI.
 
-- **Sort:** sort items by id, metadata, and quantity.
-- **Refill:** move same items (between chest and inventory) to chest.
-- **Fill:** move items from inventory to chest.
-- **Dump:** move items from chest to inventory.
+-   **Sort:** sort items by id, metadata, and quantity.
+-   **Refill:** move same items (between chest and inventory) to chest.
+-   **Fill:** move items from inventory to chest.
+-   **Dump:** move items from chest to inventory.
 
 > **Important**
-> - Required [Babric](https://github.com/Turnip-Labs/babric-instance-repo/releases) to run the mod.  
-> - Required [HalpLibe](https://github.com/Turnip-Labs/bta-halplibe/releases) in BTA version 7.1 and later.
+>
+> -   Required [Babric](https://github.com/Turnip-Labs/babric-instance-repo/releases) to run the mod.
+> -   Required [HalpLibe](https://github.com/Turnip-Labs/bta-halplibe/releases) in BTA version 7.1 and later.
 
 ## FAQ
 
@@ -36,5 +37,5 @@ by its quantity (descending).
 
 ## Contributors
 
-- **ressidell** and **andreiqwer** for helping me migrate this mod to BTA v7.1!
-- **Bigjango13** for making this mod compatible with Astoria's Iron Chests and migrating this mod to BTA v7.2-pre2!
+-   **ressidell** and **andreiqwer** for helping me migrate this mod to BTA v7.1!
+-   **Bigjango13** for making this mod compatible with Astoria's Iron Chests and migrating this mod to BTA v7.2-pre2!
