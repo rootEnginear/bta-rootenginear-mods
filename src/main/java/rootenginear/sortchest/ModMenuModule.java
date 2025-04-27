@@ -1,7 +1,8 @@
 package rootenginear.sortchest;
 
 import io.github.prospector.modmenu.api.ModMenuApi;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.Screen;
+import net.minecraft.client.gui.options.ScreenOptions;
 import rootenginear.sortchest.gui.GuiModMenuOptionsPage;
 
 import java.util.function.Function;
@@ -13,7 +14,7 @@ public class ModMenuModule implements ModMenuApi {
 	}
 
 	@Override
-	public Function<GuiScreen, ? extends GuiScreen> getConfigScreenFactory() {
-		return (GuiModMenuOptionsPage::getOptionsScreen);
+	public Function<Screen, ScreenOptions> getConfigScreenFactory() {
+		return (GuiModMenuOptionsPage::createGui);
 	}
 }
