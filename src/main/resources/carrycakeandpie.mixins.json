@@ -7,6 +7,10 @@
     "BlockLogicCakeMixin",
     "BlockLogicPiePumpkinMixin"
   ],
+  "client": [
+    "MobRendererPlayerMixin",
+    "ModelBipedMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
