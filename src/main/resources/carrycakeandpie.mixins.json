@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "rootenginear.carrycakeandpie.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BlockLogicCakeMixin",
+    "BlockLogicPiePumpkinMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

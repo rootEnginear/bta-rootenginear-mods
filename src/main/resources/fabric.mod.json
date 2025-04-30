@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "playground",
+	"id": "carrycakeandpie",
 	"version": "${version}",
-	"name": "Playground",
-	"description": "This is the beginning of awesome mods!",
+	"name": "Carry Cake and Pie",
+	"description": "Cake and pie for you!",
 	"authors": [
 		"rootEnginear"
 	],
@@ -17,20 +17,11 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"rootenginear.playground.Playground"
-		],
-		"beforeGameStart": [
-			"rootenginear.playground.Playground"
-		],
-		"afterGameStart": [
-			"rootenginear.playground.Playground"
-		],
-		"recipesReady": [
-			"rootenginear.playground.Playground"
+			"rootenginear.carrycakeandpie.CarryCakeAndPie"
 		]
 	},
 	"mixins": [
-		"playground.mixins.json"
+		"carrycakeandpie.mixins.json"
 	],
 	"depends": {
 		"minecraft": "~7.3",
