@@ -1,8 +1,8 @@
 <img align="right" height="128" width="128" alt="" loading="lazy" decoding="async" src="./src/main/resources/icon.png"/>
 
-# Playground
+# Carry Cake and Pie
 
-This is the beginning of awesome mods!
+Cake and pumpkin pie for you!
 
 > **Important**
 > - Required [Babric](https://github.com/Turnip-Labs/babric-instance-repo/releases) to run the mod.
@@ -10,6 +10,12 @@ This is the beginning of awesome mods!
 
 ## Features
 
-- Feature #1
-- Feature #2
-- Feature #3
+- `Shift` + `Right Click` at a cake or a pumpkin pie to carry it around.
+
+## Compatibility Table
+
+| Client | Server | Behavior                                                                                                                                     |
+|--------|--------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| ✅      | ❌      | You will eat the original cake/pie, and will pick it up _visually_.<br/>(meaning you are not actually holding it, it's just a visual glitch) |
+| ❌      | ✅      | You will pick it up.                                                                                                                         |
+| ✅      | ✅      | You will pick it up.                                                                                                                         |
