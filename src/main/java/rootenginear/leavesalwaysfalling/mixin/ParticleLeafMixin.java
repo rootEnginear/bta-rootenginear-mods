@@ -1,5 +1,7 @@
 package rootenginear.leavesalwaysfalling.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.entity.particle.ParticleLeaf;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
@@ -10,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import rootenginear.leavesalwaysfalling.mixin.accessors.ParticleAccessor;
 
+@Environment(EnvType.CLIENT)
 @Mixin(value = {ParticleLeaf.class}, remap = false)
 public class ParticleLeafMixin {
 	@Inject(method = "<init>", at = @At("TAIL"))

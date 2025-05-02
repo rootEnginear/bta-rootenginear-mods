@@ -1,10 +1,13 @@
 package rootenginear.leavesalwaysfalling.mixin.accessors;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.entity.particle.Particle;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
+@Environment(EnvType.CLIENT)
 @Mixin(value = {Particle.class}, remap = false)
 public interface ParticleAccessor {
 	@Accessor("tex")

@@ -1,12 +1,15 @@
 package rootenginear.leavesalwaysfalling;
 
 import io.github.prospector.modmenu.api.ModMenuApi;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Screen;
 import net.minecraft.client.gui.options.ScreenOptions;
 import rootenginear.leavesalwaysfalling.gui.GuiOptionsPageLeaves;
 
 import java.util.function.Function;
 
+@Environment(EnvType.CLIENT)
 public class ModMenuModule implements ModMenuApi {
 	@Override
 	public String getModId() {
