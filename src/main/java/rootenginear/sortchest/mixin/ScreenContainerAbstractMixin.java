@@ -1,5 +1,7 @@
 package rootenginear.sortchest.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ButtonElement;
 import net.minecraft.client.gui.Screen;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Environment(EnvType.CLIENT)
 @Mixin(value = {ScreenContainerAbstract.class}, remap = false)
 public class ScreenContainerAbstractMixin {
 	@Shadow
@@ -35,7 +38,6 @@ public class ScreenContainerAbstractMixin {
 
 	@Shadow
 	TooltipElement tooltipElement;
-
 
 	@Unique
 	private void mergeItemsInChest(Minecraft mc, int countInvSlots) {

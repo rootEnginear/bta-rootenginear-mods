@@ -1,5 +1,7 @@
 package rootenginear.sortchest.gui;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Screen;
 import net.minecraft.client.gui.options.ScreenOptions;
 import net.minecraft.client.gui.options.components.KeyBindingComponent;
@@ -14,6 +16,7 @@ import net.minecraft.core.item.ItemStack;
 import org.lwjgl.input.Keyboard;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 
+@Environment(EnvType.CLIENT)
 public class GuiModMenuOptionsPage implements ClientStartEntrypoint {
 	public static OptionsPage sortOptions;
 

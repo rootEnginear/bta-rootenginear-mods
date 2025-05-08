@@ -1,5 +1,7 @@
 package rootenginear.sortchest.utils;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.container.ScreenContainer;
 import net.minecraft.core.InventoryAction;
@@ -7,6 +9,7 @@ import net.minecraft.core.item.ItemStack;
 
 import java.util.Comparator;
 
+@Environment(EnvType.CLIENT)
 public class Utils {
 	public static boolean isNotChest(Object object) {
 		return !(object instanceof ScreenContainer);
