@@ -6,6 +6,7 @@ import net.minecraft.client.option.GameSettings;
 import net.minecraft.client.option.Option;
 import net.minecraft.client.option.OptionFloat;
 import net.minecraft.client.option.OptionRange;
+import net.minecraft.core.lang.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,11 +32,11 @@ public class GameSettingsMixin implements ILeavesSettings {
 		if (option == frequency) {
 			int value = (int) option.value;
 			if (value == 0) {
-				cir.setReturnValue("Never");
+				cir.setReturnValue(I18n.getInstance().translateKey("options.leavesalwaysfalling.frequency.never"));
 				return;
 			}
 			if (value == 100) {
-				cir.setReturnValue("GPU goes brrr");
+				cir.setReturnValue(I18n.getInstance().translateKey("options.leavesalwaysfalling.frequency.always"));
 				return;
 			}
 			cir.setReturnValue(value + "%");

@@ -1,3 +1,5 @@
 options.category.leavesalwaysfalling=Leaves Always Falling
 options.leavesalwaysfalling.frequency=Leaves Falling Percentage
+options.leavesalwaysfalling.frequency.never=Never
+options.leavesalwaysfalling.frequency.always=GPU goes brrr
 options.leavesalwaysfalling.gravityMultiplier=Leaves Gravity Multiplier
