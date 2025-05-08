@@ -1,2 +1,3 @@
 options.category.leavesalwaysfalling=Leaves Always Falling
 options.leavesalwaysfalling.frequency=Leaves Falling Percentage
+options.leavesalwaysfalling.gravityMultiplier=Leaves Gravity Multiplier

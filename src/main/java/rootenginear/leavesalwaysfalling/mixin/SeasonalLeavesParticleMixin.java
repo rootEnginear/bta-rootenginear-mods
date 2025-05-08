@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import rootenginear.leavesalwaysfalling.gui.GuiOptionsPageLeaves;
+import rootenginear.leavesalwaysfalling.LeavesAlwaysFalling;
 
 import java.util.Random;
 
@@ -20,7 +20,7 @@ import java.util.Random;
 public class SeasonalLeavesParticleMixin {
 	@Inject(method = "animationTick", at = @At("HEAD"), cancellable = true)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand, CallbackInfo ci) {
-		int randomBound = GuiOptionsPageLeaves.leavesFrequency.value;
+		int randomBound = LeavesAlwaysFalling.getFrequencyOption().value;
 		if (randomBound == 0) {
 			ci.cancel();
 			return;
