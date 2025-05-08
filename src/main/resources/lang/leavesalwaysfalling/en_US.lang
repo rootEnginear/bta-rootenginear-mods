@@ -3,3 +3,5 @@ options.leavesalwaysfalling.frequency=Leaves Falling Percentage
 options.leavesalwaysfalling.frequency.never=Never
 options.leavesalwaysfalling.frequency.always=GPU goes brrr
 options.leavesalwaysfalling.gravityMultiplier=Leaves Gravity Multiplier
+options.leavesalwaysfalling.xMultiplier=Leaves X Movement Multiplier
+options.leavesalwaysfalling.zMultiplier=Leaves Z Movement Multiplier

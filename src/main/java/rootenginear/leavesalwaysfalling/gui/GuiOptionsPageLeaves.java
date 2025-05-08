@@ -33,6 +33,8 @@ public class GuiOptionsPageLeaves implements ClientStartEntrypoint {
 			.withComponent(new OptionsCategory("options.category.leavesalwaysfalling")
 				.withComponent(new ToggleableOptionComponent<>(LeavesAlwaysFalling.getFrequencyOption()))
 				.withComponent(new FloatOptionComponent(LeavesAlwaysFalling.getGravityMultiplierOption()))
+				.withComponent(new FloatOptionComponent(LeavesAlwaysFalling.getXMultiplierOption()))
+				.withComponent(new FloatOptionComponent(LeavesAlwaysFalling.getZMultiplierOption()))
 			);
 
 		OptionsPages.register(leavesOptions);

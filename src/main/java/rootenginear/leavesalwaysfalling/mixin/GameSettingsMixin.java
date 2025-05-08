@@ -27,6 +27,12 @@ public class GameSettingsMixin implements ILeavesSettings {
 	@Unique
 	private final OptionFloat gravityMultiplier = new OptionFloat(self, "leavesalwaysfalling.gravityMultiplier", 0.09F);
 
+	@Unique
+	private final OptionFloat xMultiplier = new OptionFloat(self, "leavesalwaysfalling.xMultiplier", 0.09F);
+	
+	@Unique
+	private final OptionFloat zMultiplier = new OptionFloat(self, "leavesalwaysfalling.zMultiplier", 0.09F);
+
 	@Inject(method = "getDisplayString", at = @At("HEAD"), cancellable = true)
 	private void customDisplayString(Option<?> option, CallbackInfoReturnable<String> cir) {
 		if (option == frequency) {
@@ -40,7 +46,7 @@ public class GameSettingsMixin implements ILeavesSettings {
 				return;
 			}
 			cir.setReturnValue(value + "%");
-		} else if (option == gravityMultiplier) {
+		} else if (option == gravityMultiplier || option == xMultiplier || option == zMultiplier) {
 			float value = (float) option.value;
 			float normalizedValue = Utils.normalizeGravityMultiplier(value);
 			cir.setReturnValue(Utils.formatFloatOneDecimal(normalizedValue) + "x");
@@ -53,5 +59,13 @@ public class GameSettingsMixin implements ILeavesSettings {
 
 	public OptionFloat bta_rootenginear_mods$getGravityMultiplierOption() {
 		return gravityMultiplier;
+	}
+
+	public OptionFloat bta_rootenginear_mods$getXMultiplierOption() {
+		return xMultiplier;
+	}
+
+	public OptionFloat bta_rootenginear_mods$getZMultiplierOption() {
+		return zMultiplier;
 	}
 }

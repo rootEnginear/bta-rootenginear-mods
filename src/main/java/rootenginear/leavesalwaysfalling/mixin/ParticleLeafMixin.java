@@ -29,6 +29,16 @@ public class ParticleLeafMixin {
 
 	@Redirect(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/client/entity/particle/ParticleLeaf;yd:D", opcode = Opcodes.PUTFIELD))
 	public void modifyYd(ParticleLeaf particleLeaf, double yd) {
-		particleLeaf.yd -= yd * ((double) Utils.normalizeGravityMultiplier(LeavesAlwaysFalling.getGravityMultiplierOption().value));
+		particleLeaf.yd -= (particleLeaf.yd - yd) * ((double) Utils.normalizeGravityMultiplier(LeavesAlwaysFalling.getGravityMultiplierOption().value));
+	}
+
+	@Redirect(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/client/entity/particle/ParticleLeaf;xd:D", opcode = Opcodes.PUTFIELD, ordinal = 0))
+	public void modifyXd(ParticleLeaf particleLeaf, double xd) {
+		particleLeaf.xd += (xd - particleLeaf.xd) * ((double) Utils.normalizeGravityMultiplier(LeavesAlwaysFalling.getXMultiplierOption().value));
+	}
+
+	@Redirect(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/client/entity/particle/ParticleLeaf;zd:D", opcode = Opcodes.PUTFIELD, ordinal = 0))
+	public void modifyZd(ParticleLeaf particleLeaf, double zd) {
+		particleLeaf.zd += (zd - particleLeaf.zd) * ((double) Utils.normalizeGravityMultiplier(LeavesAlwaysFalling.getZMultiplierOption().value));
 	}
 }

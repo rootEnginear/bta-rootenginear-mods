@@ -23,6 +23,14 @@ public class LeavesAlwaysFalling implements ModInitializer {
 		return ((ILeavesSettings) Minecraft.getMinecraft().gameSettings).bta_rootenginear_mods$getGravityMultiplierOption();
 	}
 
+	public static OptionFloat getXMultiplierOption() {
+		return ((ILeavesSettings) Minecraft.getMinecraft().gameSettings).bta_rootenginear_mods$getXMultiplierOption();
+	}
+
+	public static OptionFloat getZMultiplierOption() {
+		return ((ILeavesSettings) Minecraft.getMinecraft().gameSettings).bta_rootenginear_mods$getZMultiplierOption();
+	}
+
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Leaves Always Falling initialized.");
