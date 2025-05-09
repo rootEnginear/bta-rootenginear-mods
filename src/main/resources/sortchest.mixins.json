@@ -4,6 +4,7 @@
   "package": "rootenginear.sortchest.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "GameSettingsMixin",
     "ScreenContainerAbstractMixin"
   ],
   "injectors": {

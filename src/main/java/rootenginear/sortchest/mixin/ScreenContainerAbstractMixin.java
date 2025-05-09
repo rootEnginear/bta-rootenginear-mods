@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import rootenginear.sortchest.gui.GuiModMenuOptionsPage;
+import rootenginear.sortchest.SortChest;
 import rootenginear.sortchest.utils.Utils;
 
 import java.util.ArrayList;
@@ -138,7 +138,7 @@ public class ScreenContainerAbstractMixin {
 
 		Minecraft mc = Minecraft.getMinecraft();
 
-		if (GuiModMenuOptionsPage.keyDump.isKeyboardKey(eventKey)) {
+		if (SortChest.getKeyDump().isKeyboardKey(eventKey)) {
 			dumpItemFromChest(mc);
 
 			ci.cancel();
@@ -147,7 +147,7 @@ public class ScreenContainerAbstractMixin {
 
 		int countInvSlots = this.inventorySlots.slots.size() - 36;
 
-		if (GuiModMenuOptionsPage.keySort.isKeyboardKey(eventKey)) {
+		if (SortChest.getKeySort().isKeyboardKey(eventKey)) {
 			mergeItemsInChest(mc, countInvSlots);
 			sortItemsInChest(mc, countInvSlots);
 
@@ -155,14 +155,14 @@ public class ScreenContainerAbstractMixin {
 			return;
 		}
 
-		if (GuiModMenuOptionsPage.keyRefill.isKeyboardKey(eventKey)) {
+		if (SortChest.getKeyRefill().isKeyboardKey(eventKey)) {
 			refillChest(mc, countInvSlots);
 
 			ci.cancel();
 			return;
 		}
 
-		if (GuiModMenuOptionsPage.keyFill.isKeyboardKey(eventKey)) {
+		if (SortChest.getKeyFill().isKeyboardKey(eventKey)) {
 			dumpItemToChest(mc, countInvSlots);
 
 			ci.cancel();
@@ -218,13 +218,13 @@ public class ScreenContainerAbstractMixin {
 
 
 			if (i == 0)
-				this.tooltipElement.render(i18n.translateKey("sortchest.sort") + " [" + GuiModMenuOptionsPage.keySort.getKeyName() + "]", x, y, 8, -8);
+				this.tooltipElement.render(i18n.translateKey("sortchest.sort") + " [" + SortChest.getKeySort().getKeyName() + "]", x, y, 8, -8);
 			if (i == 1)
-				this.tooltipElement.render(i18n.translateKey("sortchest.refill") + " [" + GuiModMenuOptionsPage.keyRefill.getKeyName() + "]", x, y, 8, -8);
+				this.tooltipElement.render(i18n.translateKey("sortchest.refill") + " [" + SortChest.getKeyRefill().getKeyName() + "]", x, y, 8, -8);
 			if (i == 2)
-				this.tooltipElement.render(i18n.translateKey("sortchest.fill") + " [" + GuiModMenuOptionsPage.keyFill.getKeyName() + "]", x, y, 8, -8);
+				this.tooltipElement.render(i18n.translateKey("sortchest.fill") + " [" + SortChest.getKeyFill().getKeyName() + "]", x, y, 8, -8);
 			if (i == 3)
-				this.tooltipElement.render(i18n.translateKey("sortchest.dump") + " [" + GuiModMenuOptionsPage.keyDump.getKeyName() + "]", x, y, 8, -8);
+				this.tooltipElement.render(i18n.translateKey("sortchest.dump") + " [" + SortChest.getKeyDump().getKeyName() + "]", x, y, 8, -8);
 		}
 	}
 }
