@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "playground",
+	"id": "extendedfontrendering",
 	"version": "${version}",
-	"name": "Playground",
+	"name": "ExtendedFontRendering",
 	"description": "This is the beginning of awesome mods!",
 	"authors": [
 		"rootEnginear"
@@ -17,20 +17,11 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"rootenginear.playground.Playground"
-		],
-		"beforeGameStart": [
-			"rootenginear.playground.Playground"
-		],
-		"afterGameStart": [
-			"rootenginear.playground.Playground"
-		],
-		"recipesReady": [
-			"rootenginear.playground.Playground"
+			"rootenginear.extendedfontrendering.ExtendedFontRendering"
 		]
 	},
 	"mixins": [
-		"playground.mixins.json"
+		"extendedfontrendering.mixins.json"
 	],
 	"depends": {
 		"minecraft": "~7.3",

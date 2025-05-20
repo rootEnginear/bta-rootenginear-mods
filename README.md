@@ -1,6 +1,6 @@
 <img align="right" height="128" width="128" alt="" loading="lazy" decoding="async" src="./src/main/resources/icon.png"/>
 
-# Playground
+# Extended Font Rendering
 
 This is the beginning of awesome mods!
 

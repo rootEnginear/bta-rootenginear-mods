@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "rootenginear.extendedfontrendering.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "FontMixin",
+    "ITextFieldMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

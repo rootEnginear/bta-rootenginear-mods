@@ -1,0 +1,14 @@
+gui.main_menu.label.disclaimer.1=สงวนลิขสิทธิ์ Mojang Studios  ไม่ใช่ผลิตภัณฑ์ Minecraft อย่างเป็นทางการ
+gui.main_menu.label.disclaimer.2=ไม่ได้รับการอนุมัติหรือเกี่ยวข้องกับ Mojang Studios หรือ Microsoft.
+gui.main_menu.label.downloading_resources.1=Downloading resources: %s / %s
+gui.main_menu.label.downloading_resources.2=Sounds may not play during this process!
+gui.main_menu.button.singleplayer=เล่นแบบซิงเกิลเพลเยอร์ (คนเดียว)
+gui.main_menu.button.multiplayer=เล่นแบบมัลติเพลเยอร์ (ออนไลน์)
+gui.main_menu.button.multiplayer.disabled=เล่นแบบมัลติเพลเยอร์ (ยังไม่พร้อม!)
+gui.main_menu.button.texture_packs=รูปแบบกราฟฟิก
+gui.main_menu.button.options=ตั้งค่า...
+gui.main_menu.button.quit_game=ออกจากเกม
+gui.main_menu.button.discord=ดิสคอร์ด
+gui.main_menu.button.youtube=ยูทูป
+gui.main_menu.button.website=เว็บไซต์
+gui.main_menu.button.credits=เครดิต
