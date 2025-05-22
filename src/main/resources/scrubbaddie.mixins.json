@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "rootenginear.scrubbaddie.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BlockLogicSignMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "playground",
+	"id": "scrubbaddie",
 	"version": "${version}",
-	"name": "Playground",
+	"name": "Scrub Baddie",
 	"description": "This is the beginning of awesome mods!",
 	"authors": [
 		"rootEnginear"
@@ -17,20 +17,20 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"rootenginear.playground.Playground"
+			"rootenginear.scrubbaddie.ScrubBaddie"
 		],
-		"beforeGameStart": [
-			"rootenginear.playground.Playground"
+		"afterItemInit": [
+			"rootenginear.scrubbaddie.ScrubBaddie"
 		],
-		"afterGameStart": [
-			"rootenginear.playground.Playground"
+		"initModels": [
+			"rootenginear.scrubbaddie.ScrubBaddie"
 		],
 		"recipesReady": [
-			"rootenginear.playground.Playground"
+			"rootenginear.scrubbaddie.ScrubBaddie"
 		]
 	},
 	"mixins": [
-		"playground.mixins.json"
+		"scrubbaddie.mixins.json"
 	],
 	"depends": {
 		"minecraft": "~7.3",
