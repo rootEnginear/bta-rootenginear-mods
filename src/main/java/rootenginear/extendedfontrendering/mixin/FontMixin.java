@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rootenginear.extendedfontrendering.ExtendedFontRendering;
@@ -150,12 +151,26 @@ public abstract class FontMixin implements FontAccessor {
 		}
 	}
 
+	@Unique
+	public String substituteGroups(String text) {
+		for (Map.Entry<String, String> entry : feature.replacements.entrySet()) {
+			text = text.replaceAll(entry.getKey(), entry.getValue());
+		}
+		return text;
+	}
+
+	@ModifyArg(method = "renderStringInternal", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/Font;renderStringAtPos(Ljava/lang/String;Z)V"), index = 0)
+	private String renderStringInternal(String text) {
+		return substituteGroups(text);
+	}
+
 	/**
 	 * @author rootEnginear
 	 * @reason need more local variables to perform lookahead/lookbehind operations
 	 */
 	@Overwrite
-	public int getStringWidth(String string) {
+	public int getStringWidth(String text) {
+		String string = substituteGroups(text);
 		if (string == null) {
 			return 0;
 		} else {

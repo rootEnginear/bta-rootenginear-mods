@@ -7,4 +7,5 @@ public class Feature {
 	public GlobalShiftOptions global;
 	public Map<String, String> classes;
 	public Map<String, Map<String, PositionOptions>> positioning;
+	public Map<String, String> replacements;
 }
