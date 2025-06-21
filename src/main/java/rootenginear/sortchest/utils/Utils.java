@@ -12,7 +12,15 @@ import java.util.Comparator;
 @Environment(EnvType.CLIENT)
 public class Utils {
 	public static boolean isNotChest(Object object) {
-		return !(object instanceof ScreenContainer);
+		return !(object instanceof ScreenContainer || isAstoriaIronChest(object) || isAstoriaDiamondChest(object));
+	}
+
+	public static boolean isAstoriaIronChest(Object object) {
+		return object.getClass().getSimpleName().equals("ScreenIronChest");
+	}
+
+	public static boolean isAstoriaDiamondChest(Object object) {
+		return object.getClass().getSimpleName().equals("ScreenDiamondChest");
 	}
 
 	public static Comparator<ItemStack> compareItemStacks() {

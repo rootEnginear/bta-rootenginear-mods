@@ -166,7 +166,6 @@ public class ScreenContainerAbstractMixin {
 			dumpItemToChest(mc, countInvSlots);
 
 			ci.cancel();
-			return;
 		}
 
 		// Fall thru
@@ -177,27 +176,39 @@ public class ScreenContainerAbstractMixin {
 		if (Utils.isNotChest(this)) return;
 
 		Screen screenThis = (Screen) (Object) this;
-		int centerX = (screenThis.width - xSize) / 2;
-		int centerY = (screenThis.height - ySize) / 2;
+		int containerUiLeft = (screenThis.width - xSize) / 2;
+		int containerUiTop = (screenThis.height - ySize) / 2;
 
 		screenThis.buttons.clear();
 
 		Minecraft mc = Minecraft.getMinecraft();
 		int countInvSlots = this.inventorySlots.slots.size() - 36;
 
-		ButtonElement sortButton = new ButtonElement(0, centerX + xSize - 8 - 12 - 12 - 2, centerY + 4, 12, 12, "⇵");
+		boolean isAstoriaDiamondChest = Utils.isAstoriaDiamondChest(this);
+
+		int sortButtonX = isAstoriaDiamondChest ? containerUiLeft + xSize + 2 : containerUiLeft + xSize - 8 - 12 - 12 - 2;
+		int sortButtonY = isAstoriaDiamondChest ? containerUiTop + 3 : containerUiTop + 4;
+		ButtonElement sortButton = new ButtonElement(0, sortButtonX, sortButtonY, 12, 12, "⇵");
 		sortButton.setListener((button) -> {
 			mergeItemsInChest(mc, countInvSlots);
 			sortItemsInChest(mc, countInvSlots);
 		});
 
-		ButtonElement refillButton = new ButtonElement(1, centerX + xSize - 8 - 12, centerY + 4, 12, 12, "∑");
+		int refillButtonX = isAstoriaDiamondChest ? containerUiLeft + xSize + 2 : containerUiLeft + xSize - 8 - 12;
+		int refillButtonY = isAstoriaDiamondChest ? containerUiTop + 3 + 12 + 2 : containerUiTop + 4;
+		ButtonElement refillButton = new ButtonElement(1, refillButtonX, refillButtonY, 12, 12, "∑");
 		refillButton.setListener((button) -> refillChest(mc, countInvSlots));
 
-		ButtonElement fillButton = new ButtonElement(2, centerX + xSize - 8 - 12 - 12 - 2, centerY + ySize - 96, 12, 12, "⊼");
+		int ironChestYShift = Utils.isAstoriaIronChest(this) ? -1 : 0;
+
+		int fillButtonX = isAstoriaDiamondChest ? containerUiLeft + xSize + 2 : containerUiLeft + xSize - 8 - 12 - 12 - 2;
+		int fillButtonY = isAstoriaDiamondChest ? containerUiTop + ySize - 96 - 2 : containerUiTop + ySize - 96 + ironChestYShift;
+		ButtonElement fillButton = new ButtonElement(2, fillButtonX, fillButtonY, 12, 12, "⊼");
 		fillButton.setListener((button) -> dumpItemToChest(mc, countInvSlots));
 
-		ButtonElement dumpButton = new ButtonElement(3, centerX + xSize - 8 - 12, centerY + ySize - 96, 12, 12, "⊻");
+		int dumpButtonX = isAstoriaDiamondChest ? containerUiLeft + xSize + 2 : containerUiLeft + xSize - 8 - 12;
+		int dumpButtonY = isAstoriaDiamondChest ? containerUiTop + ySize - 96 + 12 : containerUiTop + ySize - 96 + ironChestYShift;
+		ButtonElement dumpButton = new ButtonElement(3, dumpButtonX, dumpButtonY, 12, 12, "⊻");
 		dumpButton.setListener((button) -> dumpItemFromChest(mc));
 
 		screenThis.buttons.add(sortButton);
