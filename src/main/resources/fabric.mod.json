@@ -30,12 +30,12 @@
 		"leavesalwaysfalling.mixins.json"
 	],
 	"depends": {
-		"minecraft": "7.1",
+		"minecraft": "^7.2-beta",
 		"fabricloader": ">=0.15.5",
-		"halplibe": ">=3.5.2"
+		"halplibe": ">=4.0.0"
 	},
 	"suggests": {
-		"modmenu": ">=2.0.5"
+		"modmenu": ">=2.0.6"
 	},
 	"custom": {
 		"modmenu:clientsideOnly": true
