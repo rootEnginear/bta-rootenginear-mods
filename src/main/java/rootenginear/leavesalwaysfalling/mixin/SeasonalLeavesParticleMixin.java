@@ -23,7 +23,7 @@ public class SeasonalLeavesParticleMixin {
 			return;
 		}
 		if (rand.nextInt(100) < randomBound) {
-			world.spawnParticle("fallingleaf", x, (float) y - 0.1f, z, 0.0, 0.0, 0.0);
+			world.spawnParticle("fallingleaf", x, (double) y - (double) 0.1F, z, 0.0F, 0.0F, 0.0F, 0);
 		}
 		ci.cancel();
 	}

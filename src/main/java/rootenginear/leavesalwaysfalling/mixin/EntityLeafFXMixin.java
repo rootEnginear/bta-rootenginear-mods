@@ -1,7 +1,7 @@
 package rootenginear.leavesalwaysfalling.mixin;
 
 import net.minecraft.client.entity.fx.EntityLeafFX;
-import net.minecraft.core.block.Block;
+import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.BlockLeavesRetro;
 import net.minecraft.core.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +15,7 @@ public class EntityLeafFXMixin {
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void checkRetroLeaves(World world, double d, double d1, double d2, double d3, double d4, double d5, CallbackInfo ci) {
 		if (world.getBlock((int) d, (int) d1, (int) d2) instanceof BlockLeavesRetro) {
-			((EntityFXAccessor) this).setParticleTextureIndex(Block.texCoordToIndex(2, 22));
+			((EntityFXAccessor) this).setParticleTexture(TextureRegistry.getTexture("minecraft:block/leaves_oak_retro"));
 		}
 	}
 }
